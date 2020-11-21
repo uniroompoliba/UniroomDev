@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon_uniroom"
@@ -13,32 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".act2"></activity>
         <!-- declaring regActivity -->
-        <activity android:name=".regActivity"></activity>
-
-        <!-- declaring main activity -->
-        <activity android:name=".MainActivity"/>
-
-
-        <!--roba splash screen -->
-        <activity android:name=".SplashActivity"
+        <activity android:name=".regActivity" /> <!-- declaring main activity -->
+        <activity android:name=".MainActivity" /> <!-- roba splash screen -->
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN"
-                    />
-                <category
-                    android:name="android.intent.category.LAUNCHER"
-                    />
-            </intent-filter>
-        </activity>
-        <!--fine roba splash screen -->
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- fine roba splash screen -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
-
