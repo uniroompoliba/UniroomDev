@@ -3,7 +3,7 @@
     package="com.example.uniroomf">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk android:minSdkVersion="12" />
+
 
     <application
         android:allowBackup="true"
@@ -18,14 +18,10 @@
         <activity android:name=".regActivity"></activity>
 
         <!-- declaring main activity -->
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity"/>
 
-        //roba splash screen
+
+        <!--roba splash screen -->
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -37,7 +33,7 @@
                     />
             </intent-filter>
         </activity>
-        //fine roba splash screen
+        <!--fine roba splash screen -->
 
         <meta-data
             android:name="preloaded_fonts"
