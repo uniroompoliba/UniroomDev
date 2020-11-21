@@ -1,3 +1,4 @@
+include ':mysql-connector-java-8.0.22'
 include ':mysql-connector-java-5.1.49-bin'
 include ':app'
 rootProject.name = "UniroomF"
