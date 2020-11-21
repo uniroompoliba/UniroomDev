@@ -19,12 +19,21 @@
 
         <!-- declaring main activity -->
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
+        //roba splash screen
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.MAIN"
+                    />
+                <category
+                    android:name="android.intent.category.LAUNCHER"
+                    />
+            </intent-filter>
+        </activity>
+        //fine roba splash screen
 
         <meta-data
             android:name="preloaded_fonts"
@@ -32,3 +41,4 @@
     </application>
 
 </manifest>
+

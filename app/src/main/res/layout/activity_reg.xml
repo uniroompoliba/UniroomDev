@@ -13,7 +13,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -134,21 +136,26 @@
                 android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="88dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="68dp"
                 android:text="Registrati"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/matR" />
+                app:layout_constraintTop_toBottomOf="@+id/matR"
+                app:layout_constraintVertical_bias="0.008" />
 
             <Button
                 android:id="@+id/resR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="80dp"
+                android:layout_marginStart="28dp"
                 android:text="Reset"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/matR" />
+                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintStart_toEndOf="@+id/regR"
+                app:layout_constraintTop_toBottomOf="@+id/matR"
+                app:layout_constraintVertical_bias="0.372" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
