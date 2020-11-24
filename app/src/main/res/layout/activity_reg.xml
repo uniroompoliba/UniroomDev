@@ -136,13 +136,13 @@
                 android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
+                android:layout_marginStart="60dp"
                 android:layout_marginTop="68dp"
                 android:text="Registrati"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR"
-                app:layout_constraintVertical_bias="0.008" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/resR"
@@ -152,10 +152,10 @@
                 android:text="Reset"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintHorizontal_bias="0.304"
                 app:layout_constraintStart_toEndOf="@+id/regR"
                 app:layout_constraintTop_toBottomOf="@+id/matR"
-                app:layout_constraintVertical_bias="0.372" />
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
