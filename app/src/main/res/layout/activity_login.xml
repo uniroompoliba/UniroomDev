@@ -57,6 +57,7 @@
         android:layout_marginBottom="76dp"
         android:background="#ccffcc"
         android:text="Accedi"
+        android:backgroundTint="#1d2041"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
