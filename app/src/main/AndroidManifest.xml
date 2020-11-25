@@ -20,15 +20,6 @@
             android:theme="@style/Theme.UniroomF.NoActionBar"></activity>
         <activity android:name=".logActivity" /> <!-- declaring regActivity -->
         <activity android:name=".regActivity" /> <!-- declaring main activity -->
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-        <!-- declaring regActivity -->
-        <activity android:name=".regActivity"></activity>
-         master
-
-        <!-- declaring main activity -->
         <activity android:name=".MainActivity"/>
 
 
