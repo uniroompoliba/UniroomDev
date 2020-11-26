@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
 import com.android.volley.toolbox.JsonArrayRequest
@@ -23,6 +24,7 @@ import java.net.URLConnection
 import java.net.URLEncoder
 
 class regActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,7 @@ class regActivity : AppCompatActivity(){
     override fun onResume()
     {
         super.onResume()
+
 
         //Codice per il reset dei campi del form
         val rstBtn = findViewById<Button>(R.id.resR)
@@ -70,21 +73,42 @@ class regActivity : AppCompatActivity(){
                     setMyHeader()
 
                     /*
-                    * Procedura del collegamento col db correttamente effettuata. Ora devo sistemare il parseNetwork
-                    * per prendere i dati anche se nulli
-                    * */
-                    val sReq = StringRequest(Request.Method.POST,url,
-                    Response.Listener<String> { response ->
-                        findViewById<EditText>(R.id.NomeR).setText(response.toString())
+                    * Procedura del collegamento col db correttamente effettuata. Ora devo inviare i dati e registrarli nel db
+                     */
 
+                    //prendo i dati dalle EditText
+
+                    val nomeUtente : String? = findViewById<EditText>(R.id.NomeR).text.toString()
+                    val cognomeUtente : String? = findViewById<EditText>(R.id.cognomeR).text.toString()
+                    val emailUtente : String? = findViewById<EditText>(R.id.emailR).text.toString()
+                    val pwUtente : String? = findViewById<EditText>(R.id.passwordR).text.toString()
+                    val ddnUtente : String? = findViewById<EditText>(R.id.dataNR).text.toString()
+                    val matUtente : String? = findViewById<EditText>(R.id.matR).text.toString()
+
+
+
+                    //Creo il JSonObject
+                    val utenti : JSONObject = JSONObject()
+                    utenti.put("matricola",matUtente)
+                    utenti.put("nome",nomeUtente)
+                    utenti.put("cognome",cognomeUtente)
+                    utenti.put("email",emailUtente)
+                    utenti.put("dataNascita",ddnUtente)
+                    utenti.put("password",pwUtente)
+
+
+                    //Request
+                    val inviaDatiServer = JsonObjectRequest(Request.Method.POST,url,utenti,
+                    Response.Listener {response ->
+                        //Toast per indicare che è andato tutto bene
+                        if(response.toString() != null)
+                            Toast.makeText(this, "Registrazione correttamente avvenuta", Toast.LENGTH_SHORT).show()
                     },
-                            Response.ErrorListener { error: VolleyError? ->
-                                //In caso di errore
-                                println("Errore: " + error.toString())
-                            }
-                            )
+                    Response.ErrorListener { error ->
+                        println("Errori riscontrati: " + error.toString())
+                    })
 
-                    myRQ.add(sReq)
+                    myRQ.add(inviaDatiServer)
 
                 }
                 catch (ex : Exception)

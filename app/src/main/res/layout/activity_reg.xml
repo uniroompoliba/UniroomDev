@@ -48,6 +48,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Nome"
+                android:maxLength="25"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pagdireg" />
@@ -60,6 +61,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text="Cognome"
+                android:maxLength="50"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/NomeR" />
@@ -84,6 +86,7 @@
                 android:ems="10"
                 android:inputType="textPassword"
                 android:text="Password"
+                android:maxLength="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,28 +100,11 @@
                 android:ems="10"
                 android:inputType="date"
                 android:text="GG/MM/AAAA"
+                android:maxLength="13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordR" />
 
-            <RadioButton
-                android:id="@+id/studR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:text="Studente"
-                app:layout_constraintBottom_toTopOf="@+id/matR"
-                app:layout_constraintStart_toStartOf="@+id/matR" />
-
-            <RadioButton
-                android:id="@+id/docR"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="32dp"
-                android:text="Docente"
-                app:layout_constraintBottom_toTopOf="@+id/matR"
-                app:layout_constraintEnd_toEndOf="@+id/matR" />
 
             <EditText
                 android:id="@+id/matR"
@@ -130,6 +116,7 @@
                 android:text="Matricola (es. 123456)"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:maxLength="7"
                 app:layout_constraintTop_toBottomOf="@+id/dataNR" />
 
             <Button
@@ -159,6 +146,7 @@
                 app:layout_constraintStart_toEndOf="@+id/regR"
                 app:layout_constraintTop_toBottomOf="@+id/matR"
                 app:layout_constraintVertical_bias="0.985" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
