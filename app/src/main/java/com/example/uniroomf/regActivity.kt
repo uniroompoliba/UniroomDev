@@ -2,6 +2,7 @@ package com.example.uniroomf
 
 import android.net.Uri
 import android.os.Bundle
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -55,9 +56,11 @@ class regActivity : AppCompatActivity(){
         regBtn.setOnClickListener {
 
             //Avvio l'esecuzione in un nuovo thread poichè nel main thread non può andare
-            Thread {
-                try
-                {
+
+            try
+            {
+                Thread {
+
                     //riproviamo con un tutorial più completo con httpUrlConnection consigliato da francesco paolo\
                     var url = "http://uniroompoliba.altervista.org/public/genReg.php"
                     var myRQ = Volley.newRequestQueue(this)
@@ -65,7 +68,7 @@ class regActivity : AppCompatActivity(){
                     //Aggiungiamo gli header per accettare la comunicazione json
                     fun setMyHeader()
                     {
-                       var headers = HashMap<String, String>()
+                        var headers = HashMap<String, String>()
                         headers.put("Content-Type", "application/json")
                         headers.put("Accept", "application/json")
                     }
@@ -78,50 +81,124 @@ class regActivity : AppCompatActivity(){
 
                     //prendo i dati dalle EditText
 
-                    val nomeUtente : String? = findViewById<EditText>(R.id.NomeR).text.toString()
-                    val cognomeUtente : String? = findViewById<EditText>(R.id.cognomeR).text.toString()
-                    val emailUtente : String? = findViewById<EditText>(R.id.emailR).text.toString()
-                    val pwUtente : String? = findViewById<EditText>(R.id.passwordR).text.toString()
-                    val ddnUtente : String? = findViewById<EditText>(R.id.dataNR).text.toString()
-                    val matUtente : String? = findViewById<EditText>(R.id.matR).text.toString()
+                    val nomeUtente : String? = findViewById<EditText>(R.id.NomeR).text.toString().trim()
+                    val cognomeUtente : String? = findViewById<EditText>(R.id.cognomeR).text.toString().trim()
+                    val emailUtente : String? = findViewById<EditText>(R.id.emailR).text.toString().trim()
+                    val pwUtente : String? = findViewById<EditText>(R.id.passwordR).text.toString().trim()
+                    val ddnUtente : String? = findViewById<EditText>(R.id.dataNR).text.toString().trim()
+                    val matUtente : String? = findViewById<EditText>(R.id.matR).text.toString().trim()
+
+                    //Controlli di validità sull'input
+                    if (matUtente!!.length == 7 && ddnUtente!!.length == 10) {
+                        //input validi al primo step - procediamo con i controlli di 2 livello
+                        /*
+                             Controlliamo se è stata inserita una mail corretta, una data di nascita correttamente.
+                             Il resto sono stringhe generiche quindi non abbiamo problemi
+                             */
+
+                        var res = contSlash(ddnUtente)
+                        var resEmail = contEmail(emailUtente)
+
+                        if (res == true || resEmail == true)
+                        {
+                            if (res == true)
+                                Looper.prepare()
+                                Toast.makeText(this, "Formato data di nascita non corretto. Troppi / o inseriti dei caratteri non corretti. Riprovare", Toast.LENGTH_LONG)
+
+                            if (resEmail == true)
+                                Looper.prepare()
+                                Toast.makeText(this, "Formato e-mai non corretto. Troppi @ presenti. Riprovare", Toast.LENGTH_LONG)
+                        }
+                        else
+                        {
+                            //Tutti i controlli sono andati a buon fine. Invio i dati e completo la registrazione
+                            //Creo il JSonObject
+                            val utenti: JSONObject = JSONObject()
+                            utenti.put("matricola", matUtente)
+                            utenti.put("nome", nomeUtente)
+                            utenti.put("cognome", cognomeUtente)
+                            utenti.put("email", emailUtente)
+                            utenti.put("dataNascita", ddnUtente)
+                            utenti.put("password", pwUtente)
 
 
+                            //Request
+                            val inviaDatiServer = JsonObjectRequest(Request.Method.POST, url, utenti,
+                                    Response.Listener { response ->
+                                        //Toast per indicare che è andato tutto bene
+                                        Toast.makeText(this, "Registrazione correttamente avvenuta", Toast.LENGTH_LONG).show()
+                                        //Passo alla prossima activity
+                                    },
+                                    Response.ErrorListener { error ->
+                                        Toast.makeText(this,error.toString(),Toast.LENGTH_LONG)
+                                    })
 
-                    //Creo il JSonObject
-                    val utenti : JSONObject = JSONObject()
-                    utenti.put("matricola",matUtente)
-                    utenti.put("nome",nomeUtente)
-                    utenti.put("cognome",cognomeUtente)
-                    utenti.put("email",emailUtente)
-                    utenti.put("dataNascita",ddnUtente)
-                    utenti.put("password",pwUtente)
+                            myRQ.add(inviaDatiServer)
 
+                        }
+                    }
 
-                    //Request
-                    val inviaDatiServer = JsonObjectRequest(Request.Method.POST,url,utenti,
-                    Response.Listener {response ->
-                        //Toast per indicare che è andato tutto bene
-                        if(response.toString() != null)
-                            Toast.makeText(this, "Registrazione correttamente avvenuta", Toast.LENGTH_SHORT).show()
-                    },
-                    Response.ErrorListener { error ->
-                        println("Errori riscontrati: " + error.toString())
-                    })
+                    else
+                    {
+                        //Input non validi
+                            Looper.prepare()
+                        Toast.makeText(this,"Input non corretto - Matricola non di 7 caratteri o data di nascita in formato non corretto ",Toast.LENGTH_LONG).show()
+                    }
 
-                    myRQ.add(inviaDatiServer)
+                }.start()
 
-                }
-                catch (ex : Exception)
-                {
-                    println("Errori rilevati: " + ex.printStackTrace())
-                }
-
-            }.start()
+            }
+            catch(ex:Exception)
+            {
+                Toast.makeText(this,ex.toString(),Toast.LENGTH_LONG)
+            }
 
 
         }
     }
 
+
+    fun contSlash( s : String?): Boolean {
+        //Controllo se la data di nascita è stata inserita correttamente
+        var i : Int
+        var contSlash = 0
+        var contFin : Boolean = false
+
+        for (i in 0..9)
+        {
+            if (s!!.get(i) == '/')
+                contSlash++
+
+            //Controllo che non vengano inserite lettere
+            if ((i != 2 || i != 5 ) && (s.get(i) != '0' || s.get(i) != '1' || s.get(i) != '2' || s.get(i) != '2' || s.get(i) != '3' || s.get(i) != '4' || s.get(i) != '5' || s.get(i) != '6' || s.get(i) != '7' ))
+                contSlash = 3
+        }
+
+        if (contSlash > 2)
+            contFin = true
+
+        return contFin
+    }
+
+    fun contEmail(s:String?) : Boolean{
+        //Controllo se l'email è corretta (al massimo un @)
+        var i : Int
+        var contAt = 0
+        var contFin = false
+
+       for(i in 0..(s!!.length - 1))
+       {
+            if(s!!.get(i) == '@')
+            {
+                contAt++
+            }
+       }
+
+        if (contAt > 1)
+            contFin = true
+
+        return contFin
+    }
 
 
 
