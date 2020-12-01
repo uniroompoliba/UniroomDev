@@ -30,7 +30,7 @@
                 android:fontFamily="@font/roboto"
                 android:text="Pagina di registrazione"
                 android:textAlignment="center"
-                android:textColor="#2196F3"
+                android:textColor="#1d2041"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -38,114 +38,153 @@
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.078" />
+                app:layout_constraintVertical_bias="0.067" />
+
 
             <EditText
                 android:id="@+id/NomeR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="68dp"
                 android:ems="10"
+                android:hint="Nome"
                 android:inputType="textPersonName"
-                android:text="Nome"
                 android:maxLength="25"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pagdireg" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.178" />
 
             <EditText
                 android:id="@+id/cognomeR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="36dp"
                 android:ems="10"
+                android:hint="Cognome"
                 android:inputType="textPersonName"
-                android:text="Cognome"
                 android:maxLength="50"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NomeR" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.287" />
 
             <EditText
                 android:id="@+id/emailR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="36dp"
                 android:ems="10"
+                android:hint="E-mail"
                 android:inputType="textEmailAddress"
-                android:text="E-mail"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cognomeR" />
-
-            <EditText
-                android:id="@+id/passwordR"
-                android:layout_width="287dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="36dp"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:text="Password"
-                android:maxLength="10"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailR" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.395" />
 
             <EditText
                 android:id="@+id/dataNR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="36dp"
                 android:ems="10"
+                android:hint="Data di nascita (gg/mm/aaaa)"
                 android:inputType="date"
-                android:text="GG/MM/AAAA"
                 android:maxLength="13"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordR" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.621" />
 
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.743">
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="141dp"
+                    android:layout_height="wrap_content"
+                    android:text="Studente" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="142dp"
+                    android:layout_height="wrap_content"
+                    android:text="Docente" />
+
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/matR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="120dp"
                 android:ems="10"
+                android:hint="Matricola"
                 android:inputType="textPersonName"
-                android:text="Matricola (es. 123456)"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:maxLength="7"
-                app:layout_constraintTop_toBottomOf="@+id/dataNR" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.856" />
 
             <Button
                 android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="68dp"
-                android:backgroundTint="#1d2041"
+                android:backgroundTint="#50c9ff"
                 android:text="Registrati"
+                android:textColor="#000000"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.213"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/matR"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.978" />
 
             <Button
                 android:id="@+id/resR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginEnd="32dp"
-                android:backgroundTint="#1d2041"
+                android:backgroundTint="#50c9ff"
                 android:text="Reset"
+                android:textColor="#000000"
+                android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/regR"
-                app:layout_constraintTop_toBottomOf="@+id/matR"
-                app:layout_constraintVertical_bias="0.985" />
+                app:layout_constraintHorizontal_bias="0.808"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.977" />
+
+            <EditText
+                android:id="@+id/passwordR"
+                android:layout_width="287dp"
+                android:layout_height="44dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="10"
+                app:layout_constraintBottom_toBottomOf="@+id/resR"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.514" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
