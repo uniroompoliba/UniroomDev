@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/purple_500"
+            android:background="#1d2041"
             app:navigationIcon="@drawable/abc_vector_test"
             app:popupTheme="@style/Theme.UniroomF.PopupOverlay" />
 
@@ -32,66 +32,68 @@
             android:id="@+id/btnNuovaPren"
             android:layout_width="291dp"
             android:layout_height="64dp"
-            android:layout_marginTop="60dp"
             android:backgroundTint="#50C9FF"
             android:text="Nuova Prenotazione"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titoloPrincStud" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.284" />
 
         <Button
             android:id="@+id/btnModPren"
             android:layout_width="291dp"
             android:layout_height="64dp"
-            android:layout_marginTop="60dp"
             android:backgroundTint="#50C9FF"
             android:text="Modifica Prenotazione"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnNuovaPren" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.433" />
 
         <TextView
             android:id="@+id/titoloPrincStud"
             android:layout_width="352dp"
             android:layout_height="46dp"
-            android:layout_marginTop="116dp"
             android:text="Selezionare un'opzione"
             android:textAlignment="center"
             android:textColor="#03A9F4"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.157" />
 
         <Button
             android:id="@+id/btnStorPren"
             android:layout_width="291dp"
             android:layout_height="64dp"
-            android:layout_marginTop="60dp"
             android:backgroundTint="#50C9FF"
             android:text="Storico Prenotazioni"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnModPren" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.584" />
 
         <Button
             android:id="@+id/btnCancPren"
             android:layout_width="291dp"
             android:layout_height="64dp"
-            android:layout_marginTop="60dp"
             android:backgroundTint="#50C9FF"
             android:text="Cancella Prenotazioni"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnStorPren"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.73" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
