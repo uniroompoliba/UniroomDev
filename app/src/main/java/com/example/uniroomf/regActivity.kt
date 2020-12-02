@@ -54,7 +54,10 @@ class regActivity : AppCompatActivity(){
         //Listener per la registrazione nel DB
         val regBtn = findViewById<Button>(R.id.regR)
 
-        
+        regBtn.setOnClickListener {
+            var intent = Intent(this,princStudActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
