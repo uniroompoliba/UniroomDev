@@ -1,10 +1,13 @@
 package com.example.uniroomf
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
 import com.android.volley.toolbox.JsonArrayRequest
@@ -23,6 +26,7 @@ import java.net.URLConnection
 import java.net.URLEncoder
 
 class regActivity : AppCompatActivity(){
+
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -32,6 +36,7 @@ class regActivity : AppCompatActivity(){
     override fun onResume()
     {
         super.onResume()
+
 
         //Codice per il reset dei campi del form
         val rstBtn = findViewById<Button>(R.id.resR)
@@ -50,56 +55,59 @@ class regActivity : AppCompatActivity(){
         val regBtn = findViewById<Button>(R.id.regR)
 
         regBtn.setOnClickListener {
+            var intent = Intent(this,princStudActivity::class.java)
+            startActivity(intent)
+        }
 
-            //Avvio l'esecuzione in un nuovo thread poichè nel main thread non può andare
-            Thread {
-                try
-                {
-                    //riproviamo con un tutorial più completo con httpUrlConnection consigliato da francesco paolo\
-                    var url = "http://uniroompoliba.altervista.org/public/genReg.php"
-                    var myRQ = Volley.newRequestQueue(this)
 
-                    //Aggiungiamo gli header per accettare la comunicazione json
-                    fun setMyHeader()
-                    {
-                       var headers = HashMap<String, String>()
-                        headers.put("Content-Type", "application/json")
-                        headers.put("Accept", "application/json")
-                    }
-
-                    setMyHeader()
-
-                    /*
-                    * Procedura del collegamento col db correttamente effettuata. Ora devo sistemare il parseNetwork
-                    * per prendere i dati anche se nulli
-                    * */
-                    val sReq = StringRequest(Request.Method.POST,url,
-                    Response.Listener<String> { response ->
-                        findViewById<EditText>(R.id.NomeR).setText(response.toString())
-
-                    },
-                            Response.ErrorListener { error: VolleyError? ->
-                                //In caso di errore
-                                println("Errore: " + error.toString())
-                            }
-                            )
-
-                    myRQ.add(sReq)
-
-                }
-                catch (ex : Exception)
-                {
-                    println("Errori rilevati: " + ex.printStackTrace())
-                }
-
-            }.start()
 
 
         }
     }
 
 
+    fun contSlash( s : String?): Boolean {
+        //Controllo se la data di nascita è stata inserita correttamente
+        var i : Int
+        var contSlash = 0
+        var contFin : Boolean = false
+
+        for (i in 0..9)
+        {
+            if (s!!.get(i) == '/')
+                contSlash++
+
+            //Controllo che non vengano inserite lettere
+            if ((i != 2 || i != 5 ) && (s.get(i) != '0' || s.get(i) != '1' || s.get(i) != '2' || s.get(i) != '2' || s.get(i) != '3' || s.get(i) != '4' || s.get(i) != '5' || s.get(i) != '6' || s.get(i) != '7' ))
+                contSlash = 3
+        }
+
+        if (contSlash > 2)
+            contFin = true
+
+        return contFin
+    }
+
+    fun contEmail(s:String?) : Boolean{
+        //Controllo se l'email è corretta (al massimo un @)
+        var i : Int
+        var contAt = 0
+        var contFin = false
+
+       for(i in 0..(s!!.length - 1))
+       {
+            if(s!!.get(i) == '@')
+            {
+                contAt++
+            }
+       }
+
+        if (contAt > 1)
+            contFin = true
+
+        return contFin
+    }
 
 
 
-}
+
