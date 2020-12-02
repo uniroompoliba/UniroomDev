@@ -55,7 +55,7 @@ class regActivity : AppCompatActivity(){
         val regBtn = findViewById<Button>(R.id.regR)
 
         regBtn.setOnClickListener {
-            var intent = Intent(this,princStudActivity::class.java)
+            var intent = Intent(this,menuPrincActivity::class.java)
             startActivity(intent)
         }
 
