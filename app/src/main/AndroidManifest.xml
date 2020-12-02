@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menuPrincActivity"></activity>
+        <activity
+            android:name=".acivityImpostazioni"
+            android:label="@string/title_activity_acivity_impostazioni"></activity>
+        <activity android:name=".menuPrincActivity" />
         <activity android:name=".logActivity" /> <!-- declaring regActivity -->
         <activity android:name=".regActivity" /> <!-- declaring main activity -->
         <activity android:name=".MainActivity">
