@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.uniroomf">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk android:minSdkVersion="19"/>
+    <uses-sdk android:minSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,40 +14,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
-       stefano
         <activity
             android:name=".princStudActivity"
             android:label="@string/title_activity_princ_stud"
-            android:theme="@style/Theme.UniroomF.NoActionBar"/>
-
+            android:theme="@style/Theme.UniroomF.NoActionBar"></activity>
         <activity android:name=".logActivity" /> <!-- declaring regActivity -->
-
         <activity android:name=".regActivity" /> <!-- declaring main activity -->
-
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <!--roba splash screen -->
-        <activity android:name=".SplashActivity"
+        </activity> <!-- roba splash screen -->
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN"
-                    />
-
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
-        </activity>
-        <!--fine roba splash screen -->
-
+        </activity> <!-- fine roba splash screen -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
-
