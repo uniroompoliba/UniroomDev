@@ -1,6 +1,5 @@
 package com.example.uniroomf
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
@@ -14,6 +13,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONArray
 import org.json.JSONObject
@@ -45,69 +45,80 @@ class regActivity : AppCompatActivity(){
             //Cliccato il bottone del reset, imposto i campi a 0
             findViewById<EditText>(R.id.NomeR).setText("Nome")
             findViewById<EditText>(R.id.cognomeR).setText("Cognome")
-            findViewById<EditText>(R.id.emailR).setText(" ")
-            findViewById<EditText>(R.id.passwordR).setText(" ")
-            findViewById<EditText>(R.id.dataNR).setText(" ")
-            findViewById<EditText>(R.id.matR).setText(" ")
+            findViewById<EditText>(R.id.emailR).setText("E-mail")
+            findViewById<EditText>(R.id.passwordR).setText("provapw")
+            findViewById<EditText>(R.id.dataNR).setText("eeee")
+            findViewById<EditText>(R.id.matR).setText("eeeeee")
         }
 
         //Listener per la registrazione nel DB
         val regBtn = findViewById<Button>(R.id.regR)
 
         regBtn.setOnClickListener {
-            var intent = Intent(this,princStudActivity::class.java)
-            startActivity(intent)
-        }
+
+            //Avvio l'esecuzione in un nuovo thread poichè nel main thread non può andare
+            Thread {
+                try
+                {
+                    //riproviamo con un tutorial più completo con httpUrlConnection consigliato da francesco paolo\
+                    var url = "http://uniroompoliba.altervista.org/public/genReg.php"
+                    var myRQ = Volley.newRequestQueue(this)
+
+                    //Aggiungiamo gli header per accettare la comunicazione json
+                    fun setMyHeader()
+                    {
+                       var headers = HashMap<String, String>()
+                        headers.put("Content-Type", "application/json")
+                        headers.put("Accept", "application/json")
+                    }
+
+                    setMyHeader()
+
+                    /*
+                    * Procedura del collegamento col db correttamente effettuata. Ora devo inviare i dati e registrarli nel db
+                     */
+
+                    //prendo i dati dalle EditText
+
+                    val nomeUtente : String? = findViewById<EditText>(R.id.NomeR).text.toString()
+                    val cognomeUtente : String? = findViewById<EditText>(R.id.cognomeR).text.toString()
+                    val emailUtente : String? = findViewById<EditText>(R.id.emailR).text.toString()
+                    val pwUtente : String? = findViewById<EditText>(R.id.passwordR).text.toString()
+                    val ddnUtente : String? = findViewById<EditText>(R.id.dataNR).text.toString()
+                    val matUtente : String? = findViewById<EditText>(R.id.matR).text.toString()
 
 
+                    //Creo il JSONObject
+                    var datiUtenti = JSONObject()
+                    datiUtenti.put("matricola",matUtente)
+                    datiUtenti.put("nome",nomeUtente)
+                    datiUtenti.put("cognome",cognomeUtente)
+                    datiUtenti.put("email",emailUtente)
+                    datiUtenti.put("dataNascita",ddnUtente)
+                    datiUtenti.put("password",pwUtente)
+
+                    //Creo la jsonObjectRequest
+
+                    val inviaDatireg = JsonObjectRequest(Request.Method.POST,url,datiUtenti,
+                    Response.Listener { response ->
+                                Toast.makeText(this,"Registrazione correttamente avvenuta!",Toast.LENGTH_LONG).show()
+                    },
+                    Response.ErrorListener { error ->
+                        Toast.makeText(this,error.toString(),Toast.LENGTH_LONG).show()
+                    })
+
+                    myRQ.add(inviaDatireg)
+                }
+                catch (ex : Exception)
+                {
+                    println("Errori rilevati: " + ex.printStackTrace())
+                }
+
+            }.start()
 
 
         }
     }
 
 
-    fun contSlash( s : String?): Boolean {
-        //Controllo se la data di nascita è stata inserita correttamente
-        var i : Int
-        var contSlash = 0
-        var contFin : Boolean = false
-
-        for (i in 0..9)
-        {
-            if (s!!.get(i) == '/')
-                contSlash++
-
-            //Controllo che non vengano inserite lettere
-            if ((i != 2 || i != 5 ) && (s.get(i) != '0' || s.get(i) != '1' || s.get(i) != '2' || s.get(i) != '2' || s.get(i) != '3' || s.get(i) != '4' || s.get(i) != '5' || s.get(i) != '6' || s.get(i) != '7' ))
-                contSlash = 3
-        }
-
-        if (contSlash > 2)
-            contFin = true
-
-        return contFin
-    }
-
-    fun contEmail(s:String?) : Boolean{
-        //Controllo se l'email è corretta (al massimo un @)
-        var i : Int
-        var contAt = 0
-        var contFin = false
-
-       for(i in 0..(s!!.length - 1))
-       {
-            if(s!!.get(i) == '@')
-            {
-                contAt++
-            }
-       }
-
-        if (contAt > 1)
-            contFin = true
-
-        return contFin
-    }
-
-
-
-
+}
