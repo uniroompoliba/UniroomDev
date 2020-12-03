@@ -56,11 +56,15 @@ class regActivity : AppCompatActivity(){
 
         regBtn.setOnClickListener {
 
-            //Avvio l'esecuzione in un nuovo thread poichè nel main thread non può andare
+
+            //Nuovo thread per il controllo a parte dei dati, per distribuire meglio il carico
+
+
+            //Avvio l'esecuzione della richiesta  in un nuovo thread poichè nel main thread non può andare
             Thread {
                 try
                 {
-                    //riproviamo con un tutorial più completo con httpUrlConnection consigliato da francesco paolo\
+                    //volley comunication
                     var url = "http://uniroompoliba.altervista.org/public/genReg.php"
                     var myRQ = Volley.newRequestQueue(this)
 
@@ -74,9 +78,8 @@ class regActivity : AppCompatActivity(){
 
                     setMyHeader()
 
-                    /*
-                    * Procedura del collegamento col db correttamente effettuata. Ora devo inviare i dati e registrarli nel db
-                     */
+                    // Procedura del collegamento col db correttamente effettuata. Ora devo inviare i dati e registrarli nel db
+
 
                     //prendo i dati dalle EditText
 
