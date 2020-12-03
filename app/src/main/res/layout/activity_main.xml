@@ -9,14 +9,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="221dp"
-        android:layout_height="171dp"
+        android:layout_width="306dp"
+        android:layout_height="256dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.685"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26"
-        app:srcCompat="@android:drawable/ic_menu_today" />
+        app:layout_constraintVertical_bias="0.261"
+        app:srcCompat="@drawable/variante_uniroom_definitiva_sgravato_e_basta" />
 
     <TextView
         android:id="@+id/indirNav"
