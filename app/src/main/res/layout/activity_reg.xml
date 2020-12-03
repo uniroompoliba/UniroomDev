@@ -20,7 +20,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_anchor="@+id/include"
             app:layout_anchorGravity="center">
 
             <TextView
@@ -141,13 +140,13 @@
                 app:layout_constraintVertical_bias="0.856" />
 
             <Button
-                android:id="@+id/regR"
+                android:id="@+id/invioPrenS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#50c9ff"
                 android:text="Registrati"
-                android:textColor="#000000"
                 android:textAllCaps="false"
+                android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.213"
@@ -156,13 +155,13 @@
                 app:layout_constraintVertical_bias="0.978" />
 
             <Button
-                android:id="@+id/resR"
+                android:id="@+id/resPrenS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#50c9ff"
                 android:text="Reset"
-                android:textColor="#000000"
                 android:textAllCaps="false"
+                android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.808"
@@ -178,7 +177,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:maxLength="10"
-                app:layout_constraintBottom_toBottomOf="@+id/resR"
+                app:layout_constraintBottom_toBottomOf="@+id/resPrenS"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.516"
                 app:layout_constraintStart_toStartOf="parent"

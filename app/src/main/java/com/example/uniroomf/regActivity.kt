@@ -1,29 +1,16 @@
 package com.example.uniroomf
 
-import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.*
-import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.internal.ContextUtils.getActivity
-import com.google.android.material.textfield.TextInputEditText
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
-import java.lang.String.format
-import java.net.HttpURLConnection
-import java.net.URL
 import javax.net.ssl.*;
-import java.net.URLConnection
-import java.net.URLEncoder
 
 class regActivity : AppCompatActivity(){
 
@@ -39,7 +26,7 @@ class regActivity : AppCompatActivity(){
 
 
         //Codice per il reset dei campi del form
-        val rstBtn = findViewById<Button>(R.id.resR)
+        val rstBtn = findViewById<Button>(R.id.resPrenS)
 
         rstBtn.setOnClickListener {
             //Cliccato il bottone del reset, imposto i campi a 0
@@ -52,7 +39,7 @@ class regActivity : AppCompatActivity(){
         }
 
         //Listener per la registrazione nel DB
-        val regBtn = findViewById<Button>(R.id.regR)
+        val regBtn = findViewById<Button>(R.id.invioPrenS)
 
         regBtn.setOnClickListener {
 

@@ -9,4 +9,20 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <!-- Array delle aule-->
+    <string-array name="Aule">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+    </string-array>
 </resources>
