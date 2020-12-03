@@ -71,6 +71,20 @@
                 app:layout_constraintVertical_bias="0.287" />
 
             <EditText
+                android:id="@+id/passwordR"
+                android:layout_width="287dp"
+                android:layout_height="44dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.515" />
+
+            <EditText
                 android:id="@+id/emailR"
                 android:layout_width="287dp"
                 android:layout_height="44dp"
@@ -140,7 +154,7 @@
                 app:layout_constraintVertical_bias="0.856" />
 
             <Button
-                android:id="@+id/invioPrenS"
+                android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#50c9ff"
@@ -149,13 +163,13 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.213"
+                app:layout_constraintHorizontal_bias="0.311"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.978" />
+                app:layout_constraintVertical_bias="0.963" />
 
             <Button
-                android:id="@+id/resPrenS"
+                android:id="@+id/resR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#50c9ff"
@@ -164,25 +178,10 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.808"
+                app:layout_constraintHorizontal_bias="0.688"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.977" />
-
-            <EditText
-                android:id="@+id/passwordR"
-                android:layout_width="287dp"
-                android:layout_height="44dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:maxLength="10"
-                app:layout_constraintBottom_toBottomOf="@+id/resPrenS"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.516"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.514" />
+                app:layout_constraintVertical_bias="0.963" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
