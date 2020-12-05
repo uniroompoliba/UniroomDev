@@ -30,6 +30,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent) //teoricamente cosi dovrei avviare l'altra activity
          }
 
+        var access = findViewById<Button>(R.id.accbutt)
+
+        access.setOnClickListener {
+            val intent2 = Intent(this, logActivity::class.java)
+            startActivity(intent2)
+        }
+
 
     }
 

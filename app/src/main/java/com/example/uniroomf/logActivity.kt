@@ -51,6 +51,7 @@ class logActivity : AppCompatActivity() {
                         Response.ErrorListener { error ->
                             Toast.makeText(this,error.toString(),Toast.LENGTH_LONG).show()
                         })
+                myRQ.add(richiesta)
 
 
 
