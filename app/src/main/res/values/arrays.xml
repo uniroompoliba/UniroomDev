@@ -25,4 +25,21 @@
         <item>M</item>
         <item>N</item>
     </string-array>
+
+    <!-- Array degli orari di inizio e fine-->
+    <!--INIZIO-->
+    <string-array name="OrariInizio">
+        <item>8:30</item>
+        <item>11:00</item>
+        <item>14:00</item>
+        <item>16:30</item>
+    </string-array>
+
+    <!--FINE-->
+    <string-array name="OrariFine">
+        <item>11:00</item>
+        <item>13:30</item>
+        <item>16:30</item>
+        <item>19:00</item>
+    </string-array>
 </resources>

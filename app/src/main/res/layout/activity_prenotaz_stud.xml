@@ -12,10 +12,10 @@
         layout="@layout/content_scrolling_pren_stud" />
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        app:layout_anchor="@+id/include3"
         app:layout_anchorGravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,18 +41,6 @@
                 app:layout_constraintVertical_bias="0.067" />
 
 
-            <TextView
-                android:id="@+id/aulaLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seleziona un'aula"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.189" />
-
             <Spinner
                 android:id="@+id/spinnerAule"
                 android:layout_width="258dp"
@@ -60,10 +48,45 @@
                 android:entries="@array/Aule"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.235" />
+                app:layout_constraintVertical_bias="0.219" />
+
+            <TextView
+                android:id="@+id/oraInizioLab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ora di inizio:"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.214"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.664" />
+
+            <CalendarView
+                android:id="@+id/calendPrenS"
+                android:layout_width="257dp"
+                android:layout_height="213dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.467"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.459" />
+
+            <TextView
+                android:id="@+id/aulaLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleziona un'aula"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.236"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.171" />
 
             <TextView
                 android:id="@+id/dayLabel"
@@ -72,20 +95,46 @@
                 android:text="Scegli un giorno"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.244"
+                app:layout_constraintHorizontal_bias="0.231"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.334" />
+                app:layout_constraintVertical_bias="0.293" />
 
-            <CalendarView
-                android:id="@+id/calendPrenS"
+            <Spinner
+                android:id="@+id/spinnerOraInizio"
                 android:layout_width="258dp"
-                android:layout_height="258dp"
+                android:layout_height="44dp"
+                android:entries="@array/OrariInizio"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.567" />
+                app:layout_constraintVertical_bias="0.736" />
+
+            <TextView
+                android:id="@+id/oraFineLab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ora di fine:"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.209"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.8" />
+
+            <Spinner
+                android:id="@+id/spinnerOraFine"
+                android:layout_width="258dp"
+                android:layout_height="44dp"
+                android:entries="@array/OrariFine"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.47"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.871" />
 
             <Button
                 android:id="@+id/invioPrenS"
@@ -97,10 +146,10 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.236"
+                app:layout_constraintHorizontal_bias="0.267"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.975" />
 
             <Button
                 android:id="@+id/resPrenS"
@@ -112,7 +161,7 @@
                 android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.764"
+                app:layout_constraintHorizontal_bias="0.656"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.976" />
