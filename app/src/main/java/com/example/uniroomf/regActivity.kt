@@ -1,6 +1,7 @@
 package com.example.uniroomf
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
@@ -46,8 +47,8 @@ class regActivity : AppCompatActivity(){
             findViewById<EditText>(R.id.cognomeR).setText("Cognome")
             findViewById<EditText>(R.id.emailR).setText("E-mail")
             findViewById<EditText>(R.id.passwordR).setText("provapw")
-            findViewById<EditText>(R.id.dataNR).setText("eeee")
-            findViewById<EditText>(R.id.matR).setText("eeeeee")
+            findViewById<EditText>(R.id.dataNR).setText("gg/mm/aaaa")
+            findViewById<EditText>(R.id.matR).setText(" ")
         }
 
         //Listener per la registrazione nel DB
@@ -88,7 +89,7 @@ class regActivity : AppCompatActivity(){
                     //prendo i dati dalla radio button
                     var rG = findViewById<RadioGroup>(R.id.radioGroup2)
                     var sel = rG.checkedRadioButtonId
-                    var rB = findViewById<RadioButton>(sel)
+                    var rB = findViewById<RadioButton>(sel).text
 
 
 
@@ -106,17 +107,33 @@ class regActivity : AppCompatActivity(){
                        //Creo la jsonObjectRequest
                         val inviaDatireg = JsonObjectRequest(Request.Method.POST,url,datiUtenti,
                                 Response.Listener { response ->
-                                    Toast.makeText(this,"Registrazione correttamente avvenuta!",Toast.LENGTH_LONG).show()
+
+                                    //Lavoro in base a ciò che ricevo
+                                    var response2 = response.get("tipoErr").toString()
+
+                                    //La ricezione avviene correttamente - controllare script PHP
+                                    if(response2.equals("1"))
+                                    {
+                                        //Nessun errore rilevato. Toast di corretta registrazione
+                                        Toast.makeText(this,"Registrazione correttamente avvenuta!",Toast.LENGTH_LONG).show()
+                                        var myIntent = Intent(this,menuPrincActivity::class.java)
+                                        startActivity(myIntent)
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(this,response2,Toast.LENGTH_LONG).show()
+                                    }
+
                                 },
                                 Response.ErrorListener { error ->
-                                    Toast.makeText(this,"Dati non corretti. Controllare il numero di @ nell'email o gli / nella data di nascita",Toast.LENGTH_LONG).show()
+                                    println(error.toString())
+                                    Toast.makeText(this,error.toString(),Toast.LENGTH_LONG).show()
                                 })
 
                         myRQ.add(inviaDatireg)
 
                     //Invio i dati ed effettuo i controlli via server
-
-
+                    
 
                 }
                 catch (ex : Exception)
