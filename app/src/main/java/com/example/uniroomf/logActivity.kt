@@ -1,5 +1,6 @@
 package com.example.uniroomf
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.JsonReader
@@ -49,11 +50,14 @@ class logActivity : AppCompatActivity() {
 
                 var richiesta = JsonObjectRequest(Request.Method.POST, url, accEmail,
                         Response.Listener { response ->
-                            Toast.makeText(this, "login effettuato correttamente ", Toast.LENGTH_LONG).show()
+                            var messaggio = response.get("tipoErr").toString()
+                            Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
+                            var passaggio = Intent(this, menuPrincActivity::class.java)
+                            startActivity(passaggio)
                         }, Response.ErrorListener { error ->
                     Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
                         }
-                        //se visualizza errore reinserisci i dati altrimenti
+
                 )
                 myRQ.add(richiesta)
 
