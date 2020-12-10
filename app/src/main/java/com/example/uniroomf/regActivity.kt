@@ -41,6 +41,7 @@ class regActivity : AppCompatActivity(){
         //Codice per il reset dei campi del form
         val rstBtn = findViewById<Button>(R.id.resR)
 
+        //Sesso
         rstBtn.setOnClickListener {
             //Cliccato il bottone del reset, imposto i campi a 0
             findViewById<EditText>(R.id.NomeR).setHint("Nome")
