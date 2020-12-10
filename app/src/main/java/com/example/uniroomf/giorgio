@@ -93,3 +93,23 @@
                 }.start()
 
             }
+
+
+
+            var richiesta = JsonObjectRequest(Request.Method.POST, url, accEmail,
+                                    Response.Listener { response ->
+                                        Toast.makeText(this, "Login correttamente avvenuto", Toast.LENGTH_LONG).show()
+                                        if (response) {
+                                            //null
+                                        }
+                                    },
+                                    Response.ErrorListener { error ->
+                                        Toast.makeText(this,error.toString(),Toast.LENGTH_LONG).show()
+                                        if ( error = null) {
+                                            //null
+                                        }
+                                        else{
+
+                                        }
+                                    })
+                            myRQ.add(richiesta)

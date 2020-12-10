@@ -2,6 +2,7 @@ package com.example.uniroomf
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.JsonReader
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,7 +18,7 @@ class logActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
     }
-
+//definire variabili di accesso
     override fun onResume() {
         super.onResume()
         var username = findViewById<EditText>(R.id.username).text.toString()
@@ -44,19 +45,17 @@ class logActivity : AppCompatActivity() {
                     accEmail.put("utente", username)
                     accEmail.put("password", password)
 
+                //definire la richiesta di accesso al login attraverso la JsonObjectRequest
+
                 var richiesta = JsonObjectRequest(Request.Method.POST, url, accEmail,
                         Response.Listener { response ->
-                            Toast.makeText(this, "Login correttamente avvenuto", Toast.LENGTH_LONG).show()
-                        },
-                        Response.ErrorListener { error ->
-                            Toast.makeText(this,error.toString(),Toast.LENGTH_LONG).show()
-                        })
+                            Toast.makeText(this, "login effettuato correttamente ", Toast.LENGTH_LONG).show()
+                        }, Response.ErrorListener { error ->
+                    Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
+                        }
+                        //se visualizza errore reinserisci i dati altrimenti
+                )
                 myRQ.add(richiesta)
-
-
-
-
-
 
             }.start()
         }
