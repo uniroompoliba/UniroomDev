@@ -47,7 +47,7 @@ class regActivity : AppCompatActivity(){
             findViewById<EditText>(R.id.cognomeR).setHint("Cognome")
             findViewById<EditText>(R.id.emailR).setHint("E-mail")
             findViewById<EditText>(R.id.passwordR).setHint("Password")
-            findViewById<EditText>(R.id.dataNR).setHint("gg/mm/aaaa")
+            findViewById<EditText>(R.id.dataNR).setHint("Data di nascita (gg/mm/aaaa")
             findViewById<EditText>(R.id.matR).setHint("Matricola")
         }
 
