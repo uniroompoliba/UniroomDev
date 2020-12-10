@@ -43,12 +43,12 @@ class regActivity : AppCompatActivity(){
 
         rstBtn.setOnClickListener {
             //Cliccato il bottone del reset, imposto i campi a 0
-            findViewById<EditText>(R.id.NomeR).setText("Nome")
-            findViewById<EditText>(R.id.cognomeR).setText("Cognome")
-            findViewById<EditText>(R.id.emailR).setText("E-mail")
-            findViewById<EditText>(R.id.passwordR).setText("provapw")
-            findViewById<EditText>(R.id.dataNR).setText("gg/mm/aaaa")
-            findViewById<EditText>(R.id.matR).setText(" ")
+            findViewById<EditText>(R.id.NomeR).setHint("Nome")
+            findViewById<EditText>(R.id.cognomeR).setHint("Cognome")
+            findViewById<EditText>(R.id.emailR).setHint("E-mail")
+            findViewById<EditText>(R.id.passwordR).setHint("Password")
+            findViewById<EditText>(R.id.dataNR).setHint("gg/mm/aaaa")
+            findViewById<EditText>(R.id.matR).setHint("Matricola")
         }
 
         //Listener per la registrazione nel DB
