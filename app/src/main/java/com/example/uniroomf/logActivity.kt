@@ -53,7 +53,7 @@ class logActivity : AppCompatActivity() {
                             var messaggio = response.get("tipoErr").toString()
                             Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
                             var passaggio = Intent(this, menuPrincActivity::class.java)
-                            startActivity(passaggio)
+                            startActivity(passaggio)  //passaggio da login andato a buon fine al menù principale
                         }, Response.ErrorListener { error ->
                     Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
                         }
