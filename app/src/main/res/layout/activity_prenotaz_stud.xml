@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+        app:layout_anchor="@+id/include3"
         app:layout_anchorGravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout
