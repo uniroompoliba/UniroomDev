@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+
+
+
     <include
         android:id="@+id/include"
         layout="@layout/content_scrolling" />
@@ -17,23 +20,23 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_anchorGravity="center">
 
-
             <Button
                 android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="28dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Registrati"
                 android:textAllCaps="false"
                 android:textColor="#000000"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.194"
+                app:layout_constraintEnd_toStartOf="@+id/resR"
+                app:layout_constraintHorizontal_bias="0.272"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR" />
 
@@ -41,14 +44,13 @@
                 android:id="@+id/resR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="64dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Reset"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.808"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR" />
 
             <EditText
@@ -162,7 +164,6 @@
                 android:id="@+id/pagdireg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:fontFamily="@font/roboto"
                 android:text="Pagina di registrazione"
                 android:textAlignment="center"
@@ -172,7 +173,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteY="40dp" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
