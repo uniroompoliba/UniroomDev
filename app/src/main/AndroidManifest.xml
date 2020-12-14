@@ -15,7 +15,8 @@
         <activity
             android:name=".prenotazStudActivity"
             android:label="@string/title_activity_prenotaz_stud"
-            android:theme="@style/Theme.UniroomF.NoActionBar"></activity>
+            android:theme="@style/Theme.UniroomF.NoActionBar">
+        </activity>
         <activity
             android:name=".acivityImpostazioni"
             android:label="@string/title_activity_acivity_impostazioni" />
@@ -26,7 +27,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity> <!-- roba splash screen -->
         <activity
