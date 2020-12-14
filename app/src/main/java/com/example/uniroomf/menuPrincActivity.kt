@@ -19,24 +19,12 @@ class menuPrincActivity : AppCompatActivity() {
 
         // Aggiungo il listener della nuova prenotazione
         var addPren = findViewById<Button>(R.id.newPren)
-
-        //Controllo se aprire la prenotazione di uno studente o di un docente
-        if(ruolo.equals("Studente"))
-        {
-            // Devo aprire la prenotazione dello Studente
-
-            addPren.setOnClickListener {
-                //Passaggio alla activity della nuova prenotazione
-                var intentPassNewPren = Intent(this,prenotazStudActivity::class.java)
-                startActivity(intentPassNewPren)
-            }
-
-        }
-        else
-        {
-            //Devo aprire la prenotazione del docente
-
-           //TODO
+        //Passo direttamente alla prenotazione. Il discorso del ruolo lo vedremo più tardi, quando
+        //andremo a fare il recap!
+        addPren.setOnClickListener {
+            //Passaggio alla activity della nuova prenotazione
+            var intentPassNewPren = Intent(this,prenotazStudActivity::class.java)
+            startActivity(intentPassNewPren)
         }
 
 
