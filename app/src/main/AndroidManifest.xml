@@ -24,11 +24,6 @@
         <activity android:name=".logActivity" /> <!-- declaring regActivity -->
         <activity android:name=".regActivity" /> <!-- declaring main activity -->
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            </intent-filter>
         </activity> <!-- roba splash screen -->
         <activity
             android:name=".SplashActivity"
