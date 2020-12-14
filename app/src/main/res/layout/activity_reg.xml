@@ -36,7 +36,7 @@
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toStartOf="@+id/resR"
-                app:layout_constraintHorizontal_bias="0.375"
+                app:layout_constraintHorizontal_bias="0.387"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR" />
 
@@ -45,12 +45,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
-                android:layout_marginEnd="60dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Reset"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.808"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR" />
 
             <EditText
