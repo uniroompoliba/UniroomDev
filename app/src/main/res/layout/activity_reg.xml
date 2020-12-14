@@ -30,13 +30,13 @@
                 android:id="@+id/regR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="36dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Registrati"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 app:layout_constraintEnd_toStartOf="@+id/resR"
-                app:layout_constraintHorizontal_bias="0.272"
+                app:layout_constraintHorizontal_bias="0.375"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/matR" />
 
@@ -44,8 +44,8 @@
                 android:id="@+id/resR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="64dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="60dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Reset"
                 android:textAllCaps="false"
@@ -131,13 +131,12 @@
                 android:hint="Matricola"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
             <RadioGroup
                 android:id="@+id/radioGroup2"
-                android:layout_width="283dp"
+                android:layout_width="287dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:orientation="horizontal"
@@ -164,6 +163,7 @@
                 android:id="@+id/pagdireg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/roboto"
                 android:text="Pagina di registrazione"
                 android:textAlignment="center"
@@ -173,7 +173,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="40dp" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
