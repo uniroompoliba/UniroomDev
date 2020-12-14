@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
         android:text="UniRoom"
+        android:textColor="?android:textColorPrimary"
         android:textAlignment="center"
         android:textSize="50sp"
         android:textStyle="bold"
