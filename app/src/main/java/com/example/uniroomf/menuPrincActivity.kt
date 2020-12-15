@@ -28,7 +28,15 @@ class menuPrincActivity : AppCompatActivity() {
         }
 
 
+        //Aggiungo il listener al bottone dello storico
+        var histBtn = findViewById<Button>(R.id.storPren)
 
+        histBtn.setOnClickListener {
+            // Passaggio all'activity dello storico
+            var intentPassHist = Intent(this,storicoActivity::class.java)
+            intentPassHist.putExtra("ruolo",ruolo)
+            startActivity(intentPassHist)
+        }
 
         //Aggiungo il listener al bottone delle impostazioni
         var settBtn = findViewById<Button>(R.id.settings)

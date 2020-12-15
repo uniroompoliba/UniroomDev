@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
+
+// Recap singola prenotazione
+
 class recapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +20,13 @@ class recapActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
+        // Passo come intent l'id prenotazione ed effettuo la query. Invio i dati tramite json array
+
+        // Request per la query
+
+
+
         var okBtn = findViewById<Button>(R.id.okBtn)
         okBtn.setOnClickListener {
             //Passaggio alla activity della nuova prenotazione

@@ -26,6 +26,9 @@ class logActivity : AppCompatActivity() {
         var password = findViewById<EditText>(R.id.password).text.toString()
         var logBTM = findViewById<Button>(R.id.register)
 
+    //Supervariabile
+    var ruolo = "";
+
         //listener
         logBTM.setOnClickListener {
             Thread{
@@ -46,19 +49,56 @@ class logActivity : AppCompatActivity() {
                     accEmail.put("utente", username)
                     accEmail.put("password", password)
 
+                // Richiesta preliminare per invio eventuale del ruolo - da fare by Aldo
+                var urlRuolo = "http://uniroompoliba.altervista.org/utilityScripts/inviaRuolo.php"
+                var richiestaRuolo = JsonObjectRequest(Request.Method.POST, urlRuolo, accEmail,
+                Response.Listener { response ->
+                    ruolo = response.toString()
+                    // Passo il ruolo
+
+                },
+                Response.ErrorListener { error ->
+                    // Errore nella comunicazione
+                })
+
+
+
                 //definire la richiesta di accesso al login attraverso la JsonObjectRequest
 
                 var richiesta = JsonObjectRequest(Request.Method.POST, url, accEmail,
                         Response.Listener { response ->
                             var messaggio = response.get("tipoErr").toString()
-                            Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
-                            var passaggio = Intent(this, menuPrincActivity::class.java)
-                            startActivity(passaggio)  //passaggio da login andato a buon fine al menù principale
+
+                            //Modifica Aldo 15/12/2020 - 16:04 - Sistemazione del messaggio di commit
+                            if(messaggio != "Email o password non valide")
+                            {
+                                // Login avvenuto correttamente
+                                //Controllo il ruolo
+                                    if(ruolo.equals("Docente"))
+                                    {
+                                        //Aprire menu Docente
+                                        Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
+                                        var passaggio = Intent(this, prenotazDocActivity::class.java) // Da modificare e aggiungere prenotazDocActivity
+                                        startActivity(passaggio)  //passaggio da login andato a buon fine al menù principale
+                                    }
+                                else
+                                    {
+                                        // Aprire menu studente
+
+                                    }
+                            }
+                            else
+                            {
+                                // Credenziali non valide
+                                Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
+                            }
+
                         }, Response.ErrorListener { error ->
-                    Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, error.toString(), Toast.LENGTH_LONG).show()
                         }
 
                 )
+                myRQ.add(richiestaRuolo)
                 myRQ.add(richiesta)
 
             }.start()
