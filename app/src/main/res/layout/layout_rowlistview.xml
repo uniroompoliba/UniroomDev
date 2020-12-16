@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/testoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="AULA:"
+        android:textSize="20sp"
+        android:textColor="#50c9ff"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeAula"
+        android:layout_toRightOf="@id/testoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="inserire l'aula"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeData"
+        android:layout_below="@id/testoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="DATA:"
+        android:textSize="20sp"
+        android:textColor="#50c9ff"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Data"
+        android:layout_toRightOf="@id/nomeData"
+        android:layout_below="@id/testoAula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:text="gg/mm/aaaa"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeOraInizio"
+        android:layout_below="@id/nomeData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="INIZIO:"
+        android:textSize="20sp"
+        android:textColor="#50c9ff"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/OraInizio"
+        android:layout_toRightOf="@id/nomeOraInizio"
+        android:layout_below="@id/nomeData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="8:30"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeOraFinale"
+        android:layout_toRightOf="@id/OraInizio"
+        android:layout_below="@id/nomeData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="FINE:"
+        android:textColor="#50c9ff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/OraFinale"
+        android:layout_toRightOf="@id/nomeOraFinale"
+        android:layout_below="@id/nomeData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="11:00"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
