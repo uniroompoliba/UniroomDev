@@ -26,9 +26,6 @@ class logActivity : AppCompatActivity() {
         var password = findViewById<EditText>(R.id.password).text.toString()
         var logBTM = findViewById<Button>(R.id.register)
 
-    //Supervariabile
-    var ruolo = "";
-
         //listener
         logBTM.setOnClickListener {
             Thread{
@@ -49,25 +46,13 @@ class logActivity : AppCompatActivity() {
                     accEmail.put("utente", username)
                     accEmail.put("password", password)
 
-                // Richiesta preliminare per invio eventuale del ruolo - da fare by Aldo
-                var urlRuolo = "http://uniroompoliba.altervista.org/utilityScripts/inviaRuolo.php"
-                var richiestaRuolo = JsonObjectRequest(Request.Method.POST, urlRuolo, accEmail,
-                Response.Listener { response ->
-                    ruolo = response.toString()
-                    // Passo il ruolo
-                },
-                Response.ErrorListener { error ->
-                    // Errore nella comunicazione
-                    println("Errore rilevato: " + error.toString())
-                })
-
-
 
                 //definire la richiesta di accesso al login attraverso la JsonObjectRequest
 
                 var richiesta = JsonObjectRequest(Request.Method.POST, url, accEmail,
                         Response.Listener { response ->
                             var messaggio = response.get("tipoErr").toString()
+                            var ruolo = response.get("ruolo").toString()
 
                             //Modifica Aldo 15/12/2020 - 16:04 - Sistemazione del messaggio di commit
                             if(messaggio != "Email o password non valide")
@@ -101,7 +86,6 @@ class logActivity : AppCompatActivity() {
                         }
 
                 )
-                myRQ.add(richiestaRuolo)
                 myRQ.add(richiesta)
 
             }.start()
