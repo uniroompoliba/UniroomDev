@@ -55,10 +55,10 @@ class logActivity : AppCompatActivity() {
                 Response.Listener { response ->
                     ruolo = response.toString()
                     // Passo il ruolo
-
                 },
                 Response.ErrorListener { error ->
                     // Errore nella comunicazione
+                    println("Errore rilevato: " + error.toString())
                 })
 
 
@@ -78,12 +78,15 @@ class logActivity : AppCompatActivity() {
                                     {
                                         //Aprire menu Docente
                                         Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
-                                        var passaggio = Intent(this, prenotazDocActivity::class.java) // Da modificare e aggiungere prenotazDocActivity
-                                        startActivity(passaggio)  //passaggio da login andato a buon fine al menù principale
+                                        var passaggio = Intent(this, prenotazDocActivity::class.java)
+                                        startActivity(passaggio)  //passaggio da login andato a buon fine al menù prenotazione del docente
                                     }
                                 else
                                     {
                                         // Aprire menu studente
+                                        Toast.makeText(this, messaggio, Toast.LENGTH_LONG).show()
+                                        var passaggio2 = Intent(this,prenotazStudActivity::class.java)
+                                        startActivity(passaggio2)
 
                                     }
                             }
