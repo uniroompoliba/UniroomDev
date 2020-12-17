@@ -8,4 +8,10 @@ class prenotazStudActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prenotaz_stud)
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        
+    }
 }
