@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
-        <activity android:name=".menuPrincStud"></activity>
+        <activity android:name=".storicoDocActivity"></activity>
+        <activity android:name=".menuPrincStud" />
         <activity android:name=".menuPrincDoc" />
         <activity android:name=".prenotazStudActivity" />
         <activity android:name=".storicoStudActivity" />
