@@ -3,10 +3,22 @@ package com.example.uniroomf
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.JsonReader
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import com.android.volley.*;
+import org.json.JSONObject
+import org.w3c.dom.Text
 
 
-// Recap singola prenotazione
+// Recap singola prenotazione - quando viene finita una prenotazione, fare uscire il recap
 
 class recapActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +33,57 @@ class recapActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        // Passo come intent l'id prenotazione ed effettuo la query. Invio i dati tramite json array
+        // Passo come intent gli elementi presi dalla lista - inutile fare la request
 
-        // Request per la query
+        // Devo convertire la stringa in json object
+        val bundlericevuto = intent.extras
+        var stringaPren = bundlericevuto!!.getString("datiPrenStringa")
+        var ruoloRicevuto = bundlericevuto!!.getString("ruolo")
+
+        //Creo il jsonObject dalla stringa ricevuta
+        var datiPrenInjson = JSONObject(stringaPren)
+
+        //Setto i dati del recap prendendoli dal json
+        var aulaRecap = datiPrenInjson.get("aula").toString()
+        var dataRecap = datiPrenInjson.get("datazione").toString()
+        var oraInizioRecap = datiPrenInjson.get("oraInizio").toString()
+        var oraFineRecap = datiPrenInjson.get("oraFine").toString()
+        var tipologiaRecap = datiPrenInjson.get("tipologia").toString()
+
+        findViewById<TextView>(R.id.aulaValue).setText(aulaRecap)
+        findViewById<TextView>(R.id.startValue).setText(oraInizioRecap)
+        findViewById<TextView>(R.id.endValue).setText(oraFineRecap)
+
+        if(ruoloRicevuto.equals("Studente"))
+        {
+            findViewById<TextView>(R.id.postoValue).setText("Posto"); // da settare quando sarà presente il menu di inserimento studente
+        }
+        else
+        {
+            findViewById<TextView>(R.id.postoValue).setText("N/A")
+        }
+
+
+
+
 
 
 
         var okBtn = findViewById<Button>(R.id.okBtn)
         okBtn.setOnClickListener {
-            //Passaggio alla activity della nuova prenotazione
-            var intentMenuPrinc = Intent(this, menuPrincActivity::class.java)
-            startActivity(intentMenuPrinc)
+            // Se docente, passaggio al menu principale
+            if(ruoloRicevuto.equals("Docente"))
+            {
+                var intentMenuPrinc = Intent(this, menuPrincActivity::class.java)
+                startActivity(intentMenuPrinc)
+            }
+            else
+            {
+                //Se studente, passaggio a lista prenotazioni
+                var intentLista = Intent(this,prenotazStudActivity::class.java)
+                startActivity(intentLista)
+            }
+
         }
     }
 }

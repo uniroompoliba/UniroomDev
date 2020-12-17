@@ -64,6 +64,10 @@ class logActivity : AppCompatActivity() {
                                         //Aprire menu Docente
                                         Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
                                         var passaggio = Intent(this, prenotazDocActivity::class.java)
+
+                                        //Aggiungo username e password, mi servirà nello script PHP
+                                        passaggio.putExtra("user",username)
+                                        passaggio.putExtra("pw",password)
                                         startActivity(passaggio)  //passaggio da login andato a buon fine al menù prenotazione del docente
                                     }
                                 else
@@ -71,7 +75,11 @@ class logActivity : AppCompatActivity() {
                                         // Aprire menu studente
                                         Toast.makeText(this, messaggio, Toast.LENGTH_LONG).show()
                                         var passaggio2 = Intent(this,prenotazStudActivity::class.java)
-                                        startActivity(passaggio2)
+
+                                        //Aggiungo username e password, mi servirà nello script PHP
+                                        passaggio2.putExtra("user",username)
+                                        passaggio2.putExtra("pw",password)
+                                        startActivity(passaggio2) // Passaggio andato a buon fine - apro prenotazione studente
 
                                     }
                             }
