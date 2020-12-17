@@ -45,7 +45,17 @@
 
     <!--TIPOLOGIA DELLE PRENOTAZIONI-->
     <string-array name="Tipologia">
-        <item>Lezione</item>
-        <item>Esame</item>
+        <item>LEZIONE</item>
+        <item>ESAME</item>
+    </string-array>
+
+    <!--SCEGLIERE UNA MATERIA-->
+    <string-array name="Materia">
+        <item>Scegliere una materia</item>
+    </string-array>
+
+    <!--SCEGLIERE UN PROFESSORE-->
+    <string-array name="Docente">
+        <item>Scegliere un docente</item>
     </string-array>
 </resources>
