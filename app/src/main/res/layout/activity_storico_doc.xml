@@ -7,38 +7,14 @@
     tools:context=".prenotazStudActivity">
 
     <ListView
-        android:id="@+id/listaStorStud"
-        android:layout_width="395dp"
-        android:layout_height="441dp"
+        android:id="@+id/listaStorDoc"
+        android:layout_width="382dp"
+        android:layout_height="548dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerMateria" />
-
-    <Spinner
-        android:id="@+id/spinnerDocente"
-        android:layout_width="258dp"
-        android:layout_height="44dp"
-        android:entries="@array/Docente"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
-
-    <Spinner
-        android:id="@+id/spinnerMateria"
-        android:layout_width="258dp"
-        android:layout_height="44dp"
-        android:entries="@array/Materia"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerTipologia" />
 
     <Spinner
         android:id="@+id/spinnerTipologia"
