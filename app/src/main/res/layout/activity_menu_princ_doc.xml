@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.16" />
 
     <Button
-        android:id="@+id/storPrenStud"
+        android:id="@+id/storPrenDoc"
         android:layout_width="291dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#50C9FF"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.45" />
 
     <Button
-        android:id="@+id/newPrenStud"
+        android:id="@+id/newPrenDoc"
         android:layout_width="291dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#50C9FF"

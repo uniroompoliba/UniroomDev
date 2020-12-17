@@ -13,7 +13,7 @@
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
         <activity android:name=".prenotazStudActivity"></activity>
-        <activity android:name=".storicoActivity" />
+        <activity android:name=".storicoStudActivity" />
         <activity android:name=".recapActivity" />
         <activity
             android:name=".prenotazDocActivity"

@@ -33,7 +33,7 @@ class menuPrincActivity : AppCompatActivity() {
 
         histBtn.setOnClickListener {
             // Passaggio all'activity dello storico
-            var intentPassHist = Intent(this,storicoActivity::class.java)
+            var intentPassHist = Intent(this,storicoStudActivity::class.java)
             intentPassHist.putExtra("ruolo",ruolo)
             startActivity(intentPassHist)
         }

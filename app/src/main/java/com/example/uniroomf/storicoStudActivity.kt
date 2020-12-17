@@ -2,13 +2,12 @@ package com.example.uniroomf
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebView
 import android.widget.Button
 
-class storicoActivity : AppCompatActivity() {
+class storicoStudActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_storico)
+        setContentView(R.layout.activity_storico_stud)
     }
 
     override fun onResume()
