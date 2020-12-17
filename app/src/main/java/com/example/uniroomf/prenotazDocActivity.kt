@@ -70,6 +70,7 @@ class prenotazDocActivity : AppCompatActivity() {
             alertDialogBuilder.setMessage("Che tipo di prenotazione si vuole effettuare?")
             alertDialogBuilder.setPositiveButton("Lezione", DialogInterface.OnClickListener(lezioneButton))
             alertDialogBuilder.setNegativeButton("Esame",DialogInterface.OnClickListener(esameButton))
+            alertDialogBuilder.show()
 
             //Aggiungo l'elemento mancante al jsonObject da inviare
             var datiPren = JSONObject()

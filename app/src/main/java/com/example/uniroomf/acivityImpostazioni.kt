@@ -1,8 +1,9 @@
 package com.example.uniroomf
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import com.android.volley.Request
@@ -10,6 +11,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+
 
 class acivityImpostazioni : AppCompatActivity() {
 
@@ -36,29 +38,47 @@ class acivityImpostazioni : AppCompatActivity() {
 
         // Request per caricare i dati basata sui dati passati dal login
         var oggettiImp = JSONObject()
-        oggettiImp.put("email",user)
-        oggettiImp.put("password",pw)
-        oggettiImp.put("ruolo",ruolo)
+        oggettiImp.put("email", user)
+        oggettiImp.put("password", pw)
+        oggettiImp.put("ruolo", ruolo)
 
         var myRQ = Volley.newRequestQueue(this)
         var urlRecuperaDati = "http://uniroompoliba.altervista.org/public/utilityScripts/recuperaDatiImpostazioni.php"
 
+        // Metodo necessario alla comunicazione
+        //Aggiungiamo gli header per accettare la comunicazione json
+        fun setMyHeader()
+        {
+            var headers = HashMap<String, String>()
+            headers.put("Content-Type", "application/json")
+            headers.put("Accept", "application/json")
+        }
+
+        setMyHeader()
+
         Thread{
 
             var prendiDati = JsonObjectRequest(Request.Method.POST, urlRecuperaDati, oggettiImp,
-            Response.Listener { response ->
+                Response.Listener { response ->
 
                     //Dal JsonObjectRicevuto imposto i dati della settings
-                    var nomeEcognome = response.get("Nome").toString() + " " + response.get("Cognome").toString()
+                    var nomeEcognome =
+                        response.get("Nome").toString() + " " + response.get("Cognome").toString()
                     findViewById<TextView>(R.id.nomeValue).setText(nomeEcognome)
-                    findViewById<TextView>(R.id.emailValue).setText(response.get("Email").toString())
-                    findViewById<TextView>(R.id.matValue).setText(response.get("Matricola").toString())
+                    findViewById<TextView>(R.id.emailValue).setText(
+                        response.get("Email").toString()
+                    )
+                    findViewById<TextView>(R.id.matValue).setText(
+                        response.get("Matricola").toString()
+                    )
                     findViewById<TextView>(R.id.roleValue).setText(ruolo)
-                    findViewById<TextView>(R.id.numValue).setText(response.get("numPren").toString())
-            },
-            Response.ErrorListener { error ->
-                        println(error.toString())
-            })
+                    findViewById<TextView>(R.id.numValue).setText(
+                        response.get("numPren").toString()
+                    )
+                },
+                Response.ErrorListener { error ->
+                    println(error.toString())
+                })
 
             myRQ.add(prendiDati)
         }.start()
@@ -69,11 +89,76 @@ class acivityImpostazioni : AppCompatActivity() {
         changePwBtn.setOnClickListener {
 
             // Nuova request di cambio password
+
             Thread{
 
-                // Invio i dati della nuova password - prima faccio l'alert
+                // Invio i dati della nuova password - prima faccio l'alert per l'inserimento della nuova password
+                val alertBuilder = AlertDialog.Builder(this)
+                val input = EditText(this)
+                val lp = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                )
+                input.layoutParams = lp
 
+                // Setto i parametri dell'alert
+                alertBuilder.setTitle("Attenzione")
+                alertBuilder.setPositiveButton("Inserisci",null)
+                alertBuilder.setView(input)
+                alertBuilder.show()
+
+
+                var newPass = input.text.toString()
+
+                // Aggiungo la nuova password
+                oggettiImp.put("nuovaPassword",newPass)
+
+                // Parametri per la comunicazione
+                var urlCambioPass = "http://uniroompoliba.altervista.org/public/utilityScripts/cambiaPassword.php"
+
+                // Request
+                var cambioPassword = JsonObjectRequest(Request.Method.POST, urlCambioPass, oggettiImp,
+                Response.Listener { response ->  
+                    // Toast di avvenuto cambiamento
+                    Toast.makeText(this,response.toString(),Toast.LENGTH_LONG).show()
+                    var passToMenu = Intent(this,menuPrincDoc::class.java)
+                    startActivity(passToMenu)
+                }, 
+                Response.ErrorListener { error ->
+                    // Errore
+                    println(error.toString())
+                })
+
+                myRQ.add(cambioPassword)
             }.start()
+        }
+
+        // Aggiungo il listener per l'eliminazione dell'account
+        var delBtn = findViewById<Button>(R.id.cancProfile)
+        delBtn.setOnClickListener {
+
+            var urlDelAccount = "http://uniroompoliba.altervista.org/public/utilityScripts/eliminaAccount.php"
+
+            // Request per eliminare l'account
+            Thread{
+
+                // Nuova JSONObjectRequest
+                var delAccount = JsonObjectRequest(Request.Method.POST, urlDelAccount, oggettiImp,
+                Response.Listener { response ->
+                    //Toast di avvenuta eliminazione, quindi passo alla primissima schermata
+                    if(response.get("tipoErr").toString().equals("Eliminazione correttamente avvenuta. Arrivederci!"))
+                    {
+                        // Eliminazione correttamente avvenuta
+                        Toast.makeText(this,response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
+                        var tornaInizio = Intent(this,MainActivity::class.java)
+                        startActivity(tornaInizio)
+                    }
+                },
+                Response.ErrorListener { error ->
+                    println(error.toString())
+                })
+            }.start()
+
         }
     }
 
