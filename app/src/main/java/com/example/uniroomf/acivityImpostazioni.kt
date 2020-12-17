@@ -157,6 +157,8 @@ class acivityImpostazioni : AppCompatActivity() {
                 Response.ErrorListener { error ->
                     println(error.toString())
                 })
+
+                myRQ.add(delAccount)
             }.start()
 
         }
