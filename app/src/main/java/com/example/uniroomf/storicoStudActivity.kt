@@ -7,7 +7,7 @@ import android.widget.ListView
 import android.widget.Spinner
 import com.android.volley.toolbox.Volley
 import com.example.uniroomf.utilityClasses.PrenInfo
-import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter
+import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
 
 class storicoStudActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class storicoStudActivity : AppCompatActivity() {
             return listaElementi!!
         }
 
-        var adapter = PrenAdapter(this ,generaPrenotazioni() )
+        var adapter = PrenAdapter2(this ,generaPrenotazioni() )
         settBtn.setOnClickListener {
             var aula = findViewById<Spinner>(R.id.spinnerTipologia).textAlignment.toString()
             var docente = findViewById<Spinner>(R.id.spinnerDocente).textAlignment.toString()
