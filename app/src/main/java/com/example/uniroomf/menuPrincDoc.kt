@@ -25,13 +25,19 @@ class menuPrincDoc : AppCompatActivity() {
         newPrenBtn.setOnClickListener {
             // Creo intent per il passaggio
             var intent = Intent(this,prenotazDocActivity::class.java)
+            intent.putExtra("user",email)
+            intent.putExtra("pw",pw)
             startActivity(intent)
         }
 
         // Aggiungo il listener al bottone dello storico
         var histBtn = findViewById<Button>(R.id.storPrenDoc)
         histBtn.setOnClickListener {
-            //Creo intent per il passaggio - quando sarà disponibile
+            //Creo intent per il passaggio
+            var histIntent = Intent(this,storicoDocActivity::class.java)
+            histIntent.putExtra("user",email)
+            histIntent.putExtra("password",pw)
+            startActivity(histIntent)
 
         }
 

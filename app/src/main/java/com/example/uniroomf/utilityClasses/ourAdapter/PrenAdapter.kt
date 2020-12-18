@@ -56,7 +56,7 @@ class PrenAdapter(storicoDocActivity: storicoDocActivity, generaPrenotazioni: Li
     }
 
     // Costruttore personalizzato -> come parametri dobbiamo mettere la lista  e il Context (null di default)
-    public fun PrenAdapter(context2: Context, pren2 : List<PrenInfo>?)
+    public fun PrenAdapter(context2: Context, pren2 : List<PrenInfo>)
     {
         this.pren = pren2
         this.context = context2
