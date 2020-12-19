@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 class menuPrincDoc : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,12 +21,15 @@ class menuPrincDoc : AppCompatActivity() {
         var email = bundle!!.get("user").toString()
         var pw = bundle!!.get("pw").toString()
 
+        var testo = findViewById<TextView>(R.id.nomeUtente)
+        testo.setText("Benvenuto " + email)
+
 
         //Aggiungo il listener al bottone della nuova prenotazione
         var newPrenBtn = findViewById<Button>(R.id.newPrenDoc)
         newPrenBtn.setOnClickListener {
             // Creo intent per il passaggio
-            var intent = Intent(this,prenotazDocActivity::class.java)
+            var intent = Intent(applicationContext,prenotazDocActivity::class.java)
             intent.putExtra("user",email)
             intent.putExtra("pw",pw)
             startActivity(intent)
@@ -34,7 +39,7 @@ class menuPrincDoc : AppCompatActivity() {
         var histBtn = findViewById<Button>(R.id.storPrenDoc)
         histBtn.setOnClickListener {
             //Creo intent per il passaggio
-            var histIntent = Intent(this,storicoDocActivity::class.java)
+            var histIntent = Intent(applicationContext,storicoDocActivity::class.java)
             histIntent.putExtra("user",email)
             histIntent.putExtra("password",pw)
             startActivity(histIntent)
