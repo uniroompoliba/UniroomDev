@@ -23,11 +23,11 @@ class prenotazStudActivity : AppCompatActivity() {
     }
 
     //Funzioni per l'alert
-    var lezioneButton = {dialog: DialogInterface, which:Int ->
+    var lezioneButton = { dialog: DialogInterface, which: Int ->
         tipo = "Lezione"
     }
 
-    var esameButton = { dialog : DialogInterface, which:Int ->
+    var esameButton = { dialog: DialogInterface, which: Int ->
         tipo = "Esame"
     }
 
@@ -50,11 +50,13 @@ class prenotazStudActivity : AppCompatActivity() {
         var listPrenStud = findViewById<ListView>(R.id.listaInsPrenStud).listPaddingTop.toString()
 
         var insPrenBtn = findViewById<Button>(R.id.invioPrenS)
-        insPrenBtn.setOnClickListener{
+        insPrenBtn.setOnClickListener {
+        }
     }
-
-
 }
+
+
+
 
 
 

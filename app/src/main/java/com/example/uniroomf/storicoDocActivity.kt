@@ -8,7 +8,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.uniroomf.utilityClasses.PrenInfo
-import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
+import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter
 
 class storicoDocActivity : AppCompatActivity() {
 
@@ -47,7 +47,7 @@ class storicoDocActivity : AppCompatActivity() {
 
 
     // Creo un'istanza dell'adapter
-    private var adapter = PrenAdapter2(this, generaPrenotazioni())
+    private var adapter = PrenAdapter(this, generaPrenotazioni())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
