@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.uniroomf.R
+import com.example.uniroomf.storicoDocActivity
 import com.example.uniroomf.storicoStudActivity
 import com.example.uniroomf.utilityClasses.PrenInfo
 
-class PrenAdapter(storicoDocActivity: storicoStudActivity, generaPrenotazioni: List<PrenInfo>) : BaseAdapter()
+class PrenAdapter(storicoDocActivity: storicoDocActivity, generaPrenotazioni: List<PrenInfo>) : BaseAdapter()
 {
     // Elementi dell'adapter
     private var pren : List<PrenInfo>? = null
