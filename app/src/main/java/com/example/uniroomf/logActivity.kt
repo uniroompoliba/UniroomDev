@@ -22,13 +22,18 @@ class logActivity : AppCompatActivity() {
 //definire variabili di accesso
     override fun onResume() {
         super.onResume()
-        var username = findViewById<EditText>(R.id.username).text.toString()
-        var password = findViewById<EditText>(R.id.password).text.toString()
+
         var logBTM = findViewById<Button>(R.id.register)
 
         //listener
         logBTM.setOnClickListener {
             Thread{
+
+                //Prendo gli elementi dalle EditText
+                var username = findViewById<EditText>(R.id.username).text.toString()
+                var password = findViewById<EditText>(R.id.password).text.toString()
+
+
                 //definire eventi comunicazione
                 var url = "http://uniroompoliba.altervista.org/public/accesso.php"
                 var myRQ = Volley.newRequestQueue(this)
@@ -55,10 +60,11 @@ class logActivity : AppCompatActivity() {
                             var ruolo = response.get("ruolo").toString()
 
                             //Modifica Aldo 15/12/2020 - 16:04 - Sistemazione del messaggio di commit
-                            if(messaggio != "Email o password non valide")
+                            if(messaggio != "Email o password non valide" && messaggio != "Email o password vuota")
                             {
                                 // Login avvenuto correttamente
                                 //Controllo il ruolo
+                                    println(ruolo)
                                     if(ruolo.equals("Docente"))
                                     {
                                         //Aprire menu Docente
