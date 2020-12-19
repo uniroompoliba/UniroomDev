@@ -117,9 +117,18 @@ class regActivity : AppCompatActivity(){
                                     {
                                         //Nessun errore rilevato. Toast di corretta registrazione
                                         Toast.makeText(this,"Registrazione correttamente avvenuta!",Toast.LENGTH_LONG).show()
-                                        var myIntent = Intent(this,menuPrincActivity::class.java)
-                                        myIntent.putExtra("ruolo", rB)
-                                        startActivity(myIntent) //Fatto
+                                        if(rB.equals("Studente"))
+                                        {
+                                            var myIntentStud = Intent(this,menuPrincStud::class.java)
+                                            myIntentStud.putExtra("ruolo",rB)
+                                            startActivity(myIntentStud)
+                                        }
+                                        else
+                                        {
+                                            var myIntentDoc = Intent(this,menuPrincDoc::class.java)
+                                            myIntentDoc.putExtra("ruolo", rB)
+                                            startActivity(myIntentDoc) //Fatto
+                                        }
 
                                     }
                                     else
