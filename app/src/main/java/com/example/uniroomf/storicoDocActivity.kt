@@ -17,7 +17,7 @@ class storicoDocActivity : AppCompatActivity() {
 
 
 //Aggiungere List come return tipo
-    fun generaPrenotazioni(c : JSONObject) : List<PrenInfo>
+    fun generaPrenotazioni(c : JSONObject)
     {
 
         var listaElementi : List<PrenInfo>? = null
@@ -55,7 +55,6 @@ class storicoDocActivity : AppCompatActivity() {
             myRQ.add(richiediPrenotazioni)
         }.start()
 
-        return listaElementi!!
     }
 
 
@@ -63,6 +62,10 @@ class storicoDocActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_storico_doc)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         //Prendo i dati degli utenti passati tramite bundle
         val bundle2 = intent.extras
@@ -82,10 +85,6 @@ class storicoDocActivity : AppCompatActivity() {
         // Creo la list view e gli attacco l'adapter
         var listView = findViewById<ListView>(R.id.listaStorDoc)
         // listView.setAdapter(adapter)
-    }
-
-    override fun onResume() {
-        super.onResume()
 
 
     }
