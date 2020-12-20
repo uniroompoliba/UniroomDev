@@ -121,12 +121,16 @@ class regActivity : AppCompatActivity(){
                                         {
                                             var myIntentStud = Intent(this,menuPrincStud::class.java)
                                             myIntentStud.putExtra("ruolo",rB)
+                                            myIntentStud.putExtra("user",emailUtente)
+                                            myIntentStud.putExtra("pw",pwUtente)
                                             startActivity(myIntentStud)
                                         }
                                         else
                                         {
                                             var myIntentDoc = Intent(this,menuPrincDoc::class.java)
                                             myIntentDoc.putExtra("ruolo", rB)
+                                            myIntentDoc.putExtra("user",emailUtente)
+                                            myIntentDoc.putExtra("pw",pwUtente)
                                             startActivity(myIntentDoc) //Fatto
                                         }
 

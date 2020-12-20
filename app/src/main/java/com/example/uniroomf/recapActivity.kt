@@ -39,6 +39,8 @@ class recapActivity : AppCompatActivity() {
         val bundlericevuto = intent.extras
         var stringaPren = bundlericevuto!!.getString("datiPrenStringa")
         var ruoloRicevuto = bundlericevuto!!.getString("ruolo")
+        var email = bundlericevuto!!.get("email").toString()
+        var pw = bundlericevuto!!.get("pw").toString()
 
         //Creo il jsonObject dalla stringa ricevuta
         var datiPrenInjson = JSONObject(stringaPren)
@@ -65,16 +67,14 @@ class recapActivity : AppCompatActivity() {
 
 
 
-
-
-
-
         var okBtn = findViewById<Button>(R.id.okBtn)
         okBtn.setOnClickListener {
             // Se docente, passaggio al menu principale
             if(ruoloRicevuto.equals("Docente"))
             {
-                var intentMenuPrinc = Intent(this, menuPrincActivity::class.java)
+                var intentMenuPrinc = Intent(this, menuPrincDoc::class.java)
+                intentMenuPrinc.putExtra("user",email)
+                intentMenuPrinc.putExtra("pw",pw)
                 startActivity(intentMenuPrinc)
             }
             else

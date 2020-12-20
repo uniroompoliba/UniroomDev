@@ -16,16 +16,15 @@ import org.json.JSONObject
 class storicoDocActivity : AppCompatActivity() {
 
 
-
+//Aggiungere List come return tipo
     fun generaPrenotazioni(c : JSONObject) : List<PrenInfo>
     {
 
-        var listaElementi : List<PrenInfo>? = null;
+        var listaElementi : List<PrenInfo>? = null
 
         // Request per fare il retrieval delle query
         var myRQ = Volley.newRequestQueue(this)
         var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
-
 
 
         Thread{
@@ -33,7 +32,19 @@ class storicoDocActivity : AppCompatActivity() {
         var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenDoc, c,
         Response.Listener { response ->
             // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
-            println(response.get("data"))
+            var stringaPren = response.get("data").toString() // Creo il json string che poi dovrò iterare
+            println(stringaPren)
+            var pren = JSONObject(stringaPren)
+            var mioArray = pren.optJSONArray("data")
+
+                          // Proviamo a estrarre i valori delle prenotazioni
+            for(i in 0 until mioArray.length() - 1)
+            {
+                var tempJson = mioArray.getJSONObject(i)
+                var aula = tempJson.opt("aula").toString()
+                println(aula)
+            }
+
 
         },
         Response.ErrorListener { error ->
@@ -41,12 +52,11 @@ class storicoDocActivity : AppCompatActivity() {
                 println(error.toString())
         })
 
+            myRQ.add(richiediPrenotazioni)
         }.start()
 
         return listaElementi!!
     }
-
-
 
 
 
@@ -61,14 +71,17 @@ class storicoDocActivity : AppCompatActivity() {
 
         // JSOnObject da inviare
         var datiDoc = JSONObject()
+        datiDoc.put("user",email)
+        datiDoc.put("pw",pw)
 
         //Aggiungere dati a jsonObject
         // Creo un'istanza dell'adapter
-        var adapter = PrenAdapter2(this, generaPrenotazioni(datiDoc))
+        //var adapter = PrenAdapter2(this, generaPrenotazioni(datiDoc))
+        generaPrenotazioni(datiDoc)
 
         // Creo la list view e gli attacco l'adapter
         var listView = findViewById<ListView>(R.id.listaStorDoc)
-        listView.setAdapter(adapter)
+        // listView.setAdapter(adapter)
     }
 
     override fun onResume() {

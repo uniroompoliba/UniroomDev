@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 
 class menuPrincDoc : AppCompatActivity() {
@@ -17,7 +18,7 @@ class menuPrincDoc : AppCompatActivity() {
         super.onResume() // Costruttore della superclasse
 
         //Prendo i dati degli utenti passati tramite bundle
-        val bundle = intent.extras
+        val bundle : Bundle? = intent.extras
         var email = bundle!!.get("user").toString()
         var pw = bundle!!.get("pw").toString()
 
@@ -55,5 +56,15 @@ class menuPrincDoc : AppCompatActivity() {
             intent3.putExtra("pw",pw)
             startActivity(intent3)
         }
+
+        // Imposto il bottone del logout e ne setto il listener
+        var logOutBtn = findViewById<ImageButton>(R.id.logout)
+        logOutBtn.setOnClickListener {
+
+            // Passo semplicemente alla schermata iniziale
+            var tornaHome = Intent(this, MainActivity::class.java)
+            startActivity(tornaHome)
+        }
+
     }
 }
