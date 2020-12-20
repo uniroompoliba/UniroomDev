@@ -7,6 +7,9 @@ import android.widget.Adapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.Spinner
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.uniroomf.utilityClasses.PrenInfo
 import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
@@ -24,9 +27,7 @@ class storicoStudActivity : AppCompatActivity () {
         {
             var listaElementi : List<PrenInfo>? = null;
 
-            // Request per fare il retrieval delle query
-            var myRQ = Volley.newRequestQueue(this)
-            var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
+
 
 
             return listaElementi !!
@@ -52,6 +53,11 @@ class storicoStudActivity : AppCompatActivity () {
                 headers.put("Accept", "application/json")
             }
         }
+
+        // Request per fare il retrieval delle query
+        var myRQ = Volley.newRequestQueue(this)
+        var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
+
 
     }
 }
