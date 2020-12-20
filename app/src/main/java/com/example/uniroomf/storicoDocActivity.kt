@@ -32,18 +32,8 @@ class storicoDocActivity : AppCompatActivity() {
         var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenDoc, c,
         Response.Listener { response ->
             // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
-            var stringaPren = response.get("data").toString() // Creo il json string che poi dovrò iterare
+            var stringaPren = response.get("data") // Creo il json string che poi dovrò iterare
             println(stringaPren)
-            var pren = JSONObject(stringaPren)
-            var mioArray = pren.optJSONArray("data")
-
-                          // Proviamo a estrarre i valori delle prenotazioni
-            for(i in 0 until mioArray.length() - 1)
-            {
-                var tempJson = mioArray.getJSONObject(i)
-                var aula = tempJson.opt("aula").toString()
-                println(aula)
-            }
 
 
         },
