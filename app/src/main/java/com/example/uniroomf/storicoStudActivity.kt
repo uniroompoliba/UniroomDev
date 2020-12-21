@@ -13,6 +13,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.uniroomf.utilityClasses.PrenInfo
 import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
+import org.json.JSONObject
+import kotlin.concurrent.thread
 
 class storicoStudActivity : AppCompatActivity () {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
@@ -23,6 +25,16 @@ class storicoStudActivity : AppCompatActivity () {
     override fun onResume() {
         super.onResume()
         val setBtn = findViewById<Button>(R.id.settings)
+
+        val bundle2 = intent.extras
+        var email = bundle2!!.get("user").toString()
+        var pw = bundle2!!.get("password").toString()
+
+        // JSOnObject da inviare
+        var datiStud = JSONObject()
+        datiStud.put("user",email)
+        datiStud.put("pw",pw)
+
         fun generaPrenotazione() : List<PrenInfo>
         {
             var listaElementi : List<PrenInfo>? = null;
@@ -33,6 +45,10 @@ class storicoStudActivity : AppCompatActivity () {
             return listaElementi !!
         }
 
+        // Request per fare il retrieval delle query
+        var myRQ = Volley.newRequestQueue(this)
+        var urlPrenStud = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
+
         var Adapter = PrenAdapter2(this, generaPrenotazione())
         setBtn.setOnClickListener {
             val aula = findViewById<Spinner>(R.id.spinnerTipologia).textAlignment.toString()
@@ -42,10 +58,6 @@ class storicoStudActivity : AppCompatActivity () {
             listStorST.setAdapter(Adapter)
 
 
-            //definire eventi comunicazione
-            var url = "http://uniroompoliba.altervista.org/public/accesso.php"
-            var myRQ = Volley.newRequestQueue(this)
-
             fun setMyHeader()
             {
                 var headers = HashMap<String, String>()
@@ -54,10 +66,25 @@ class storicoStudActivity : AppCompatActivity () {
             }
         }
 
-        // Request per fare il retrieval delle query
-        var myRQ = Volley.newRequestQueue(this)
-        var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
+        thread {
+            var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenStud, datiStud,
+                    Response.Listener { response ->
+                // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
+                var stringaPren = response.get("data") // Creo il json string che poi dovrò iterare
+                println(stringaPren)
+
+
+            },
+            Response.ErrorListener { error ->
+                // Errore
+                println(error.toString())
+            })
+
+            myRQ.add(richiediPrenotazioni)
+        }.start()
+    }
+
 
 
     }
-}
+

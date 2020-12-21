@@ -21,7 +21,7 @@ class menuPrincStud : AppCompatActivity() {
         var newPrenBtn = findViewById<Button>(R.id.newPrenStud)
         newPrenBtn.setOnClickListener {
             //intent per il passaggio
-            var intent = Intent(this, prenotazStudActivity::class.java)
+            var intent = Intent(this, PrenotazStudActivity::class.java)
             intent.putExtra("user",email)
             intent.putExtra("pw",pw)
             startActivity(intent)
@@ -29,7 +29,7 @@ class menuPrincStud : AppCompatActivity() {
 
         var histBtn = findViewById<Button>(R.id.storPrenStud)
         histBtn.setOnClickListener {
-            var intentHis = Intent (this, prenotazStudActivity::class.java)
+            var intentHis = Intent (this, PrenotazStudActivity::class.java)
             intentHis.putExtra("user",email)
             intentHis.putExtra("pw",pw)
             startActivity(intentHis)
@@ -37,7 +37,7 @@ class menuPrincStud : AppCompatActivity() {
 
         var settingBtn = findViewById<Button>(R.id.settings)
         settingBtn.setOnClickListener {
-            var intentSetting = Intent(this, prenotazStudActivity::class.java)
+            var intentSetting = Intent(this, prenotazStud::class.java)
             intentSetting.putExtra("user", email)
             intentSetting.putExtra("pw", pw)
             startActivity(intentSetting)
