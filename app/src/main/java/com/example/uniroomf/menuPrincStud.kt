@@ -37,7 +37,7 @@ class menuPrincStud : AppCompatActivity() {
 
         var settingBtn = findViewById<Button>(R.id.settings)
         settingBtn.setOnClickListener {
-            var intentSetting = Intent(this, prenotazStud::class.java)
+            var intentSetting = Intent(this, PrenotazStudActivity::class.java)
             intentSetting.putExtra("user", email)
             intentSetting.putExtra("pw", pw)
             startActivity(intentSetting)
