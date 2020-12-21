@@ -1,5 +1,6 @@
 package com.example.uniroomf
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,42 +10,63 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.uniroomf.utilityClasses.MiddleActivity
 import com.example.uniroomf.utilityClasses.PrenInfo
 import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
+import org.json.JSONArray
 import org.json.JSONObject
 
 class storicoDocActivity : AppCompatActivity() {
 
+    // Uso l'array list perchè è la variante resizable della lista
 
-//Aggiungere List come return tipo
-    fun generaPrenotazioni(c : JSONObject)
+    fun generaPrenotazioni(c : JSONObject) : ArrayList<PrenInfo>
     {
 
-        var listaElementi : List<PrenInfo>? = null
-
+        var listaElementi : ArrayList<PrenInfo> = ArrayList()
         // Request per fare il retrieval delle query
         var myRQ = Volley.newRequestQueue(this)
         var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
 
+
+        var superArray = JSONArray()
 
         Thread{
 
         var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenDoc, c,
         Response.Listener { response ->
             // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
-            var stringaPren = response.get("data") // Creo il json string che poi dovrò iterare
-            println(stringaPren)
+            // Devo estrarre i dati dal json
+            var dataArray = response.optJSONArray("data")
 
+            // I dati vengono presi correttamente - estrazione
+            for(i in 0 until dataArray.length())
+            {
+                val temp = dataArray.optJSONObject(i)
+                var oggettoLista = PrenInfo()
 
-        },
+                // Setto il singolo elemento della lista - i dati vengono presi correttamente
+                oggettoLista.setAula(temp.optString("aula"))
+                oggettoLista.setOraInizio(temp.optString("oraInizio"))
+                oggettoLista.setOraFine(temp.optString("oraFine"))
+                oggettoLista.setDataPren(temp.optString("datazione"))
+
+                listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
+            }
+
+                          },
         Response.ErrorListener { error ->
                 // Errore
                 println(error.toString())
         })
 
+            // Aggiunta alla coda delle richieste
             myRQ.add(richiediPrenotazioni)
+
         }.start()
 
+        println("Lista totale: " + listaElementi)
+        return listaElementi // Invia una lista vuota. Perchè?
     }
 
 
@@ -67,15 +89,55 @@ class storicoDocActivity : AppCompatActivity() {
         datiDoc.put("user",email)
         datiDoc.put("pw",pw)
 
-        //Aggiungere dati a jsonObject
-        // Creo un'istanza dell'adapter
-        //var adapter = PrenAdapter2(this, generaPrenotazioni(datiDoc))
-        generaPrenotazioni(datiDoc)
+        // Cambio piani. Faccio la request qua dentro e setto l'adapter in base a quello
+        var listaElementi : ArrayList<PrenInfo> = ArrayList()
+        // Request per fare il retrieval delle query
+        var myRQ = Volley.newRequestQueue(this)
+        var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
 
-        // Creo la list view e gli attacco l'adapter
-        var listView = findViewById<ListView>(R.id.listaStorDoc)
-        // listView.setAdapter(adapter)
+        Thread{
 
+            var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenDoc, datiDoc,
+                    Response.Listener { response ->
+                        // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
+                        // Devo estrarre i dati dal json
+                        var dataArray = response.optJSONArray("data")
+
+                        // I dati vengono presi correttamente - estrazione
+                        for(i in 0 until dataArray.length())
+                        {
+                            val temp = dataArray.optJSONObject(i)
+                            var oggettoLista = PrenInfo()
+
+                            // Setto il singolo elemento della lista - i dati vengono presi correttamente
+                            oggettoLista.setAula(temp.optString("aula"))
+                            oggettoLista.setOraInizio(temp.optString("oraInizio"))
+                            oggettoLista.setOraFine(temp.optString("oraFine"))
+                            oggettoLista.setDataPren(temp.optString("datazione"))
+
+                            listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
+                        }
+
+                        // Creo un'istanza dell'adapter
+                        var adapter = PrenAdapter2(this, listaElementi)
+
+                        // Creo la list view e gli attacco l'adapter
+                        var listView = findViewById<ListView>(R.id.listaStorDoc)
+                        listView.setPadding(10,10,10,10)
+                        listView.adapter = adapter
+
+
+
+                    },
+                    Response.ErrorListener { error ->
+                        // Errore
+                        println(error.toString())
+                    })
+
+            // Aggiunta alla coda delle richieste
+            myRQ.add(richiediPrenotazioni)
+
+        }.start()
 
     }
 

@@ -9,10 +9,10 @@ import android.widget.TextView
 import com.example.uniroomf.R
 import com.example.uniroomf.utilityClasses.PrenInfo
 
-class PrenAdapter2 constructor(var t : Context, p : List<PrenInfo>): BaseAdapter()
+class PrenAdapter2 constructor(var t : Context, p : ArrayList<PrenInfo>): BaseAdapter()
 {
     // Elementi dell'adapter
-    private var pren : List<PrenInfo>? = p
+    private var pren : ArrayList<PrenInfo> = p
     private var context : Context? = t
 
     // Elemento di mezzo fra la lista e gli elementi della lista stessa - Funzione base dello storico prenotazioni
@@ -29,9 +29,8 @@ class PrenAdapter2 constructor(var t : Context, p : List<PrenInfo>): BaseAdapter
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        if (p1 == null) {
-            val p1 = LayoutInflater.from(context).inflate(R.layout.layout_rowlistview_storicodoc, null);
-        }
+
+      var p1 = LayoutInflater.from(context).inflate(R.layout.layout_rowlistview_storicodoc, null);
 
         // Aggiungo gli elementi della singola riga presi dall'elemento di tipo prenotazione creato in precedenza
         var prenotazione: PrenInfo = getItem(p0) as PrenInfo

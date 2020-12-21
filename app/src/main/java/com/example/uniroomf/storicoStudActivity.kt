@@ -35,27 +35,27 @@ class storicoStudActivity : AppCompatActivity () {
         datiStud.put("user",email)
         datiStud.put("pw",pw)
 
-        fun generaPrenotazione() : List<PrenInfo>
+        fun generaPrenotazione(c : JSONObject) : ArrayList<PrenInfo>
         {
-            var listaElementi : List<PrenInfo>? = null;
+            var listaElementi : ArrayList<PrenInfo>? = null;
 
 
 
 
-            return listaElementi !!
+            return listaElementi!!
         }
 
         // Request per fare il retrieval delle query
         var myRQ = Volley.newRequestQueue(this)
         var urlPrenStud = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
 
-        var Adapter = PrenAdapter2(this, generaPrenotazione())
+        var adapter = PrenAdapter2(this, generaPrenotazione(datiStud))
         setBtn.setOnClickListener {
             val aula = findViewById<Spinner>(R.id.spinnerTipologia).textAlignment.toString()
             val docente = findViewById<Spinner>(R.id.spinnerDocente).textAlignment.toString()
             var matST = findViewById<Spinner>(R.id.spinnerMateria).textAlignment.toString()
             var listStorST = findViewById<ListView>(R.id.listaStorStud)
-            listStorST.setAdapter(Adapter)
+            listStorST.setAdapter(adapter)
 
 
             fun setMyHeader()

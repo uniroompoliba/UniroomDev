@@ -70,7 +70,7 @@ class recapActivity : AppCompatActivity() {
             else
             {
                 //Se studente, passaggio a lista prenotazioni
-                var intentLista = Intent(this,prenotazStudActivity::class.java)
+                var intentLista = Intent(this,PrenotazStudActivity::class.java)
                 startActivity(intentLista)
             }
 

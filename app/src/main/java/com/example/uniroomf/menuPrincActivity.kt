@@ -23,7 +23,7 @@ class menuPrincActivity : AppCompatActivity() {
         //andremo a fare il recap!
         addPren.setOnClickListener {
             //Passaggio alla activity della nuova prenotazione
-            var intentPassNewPren = Intent(this,prenotazStudActivity::class.java)
+            var intentPassNewPren = Intent(this,PrenotazStudActivity::class.java)
             startActivity(intentPassNewPren)
         }
 

@@ -18,7 +18,7 @@ import org.json.JSONObject
 import org.w3c.dom.Text
 import kotlin.concurrent.thread
 
-class PrenotazStudActivity() : AppCompatActivity(), Parcelable {
+class PrenotazStudActivity() : AppCompatActivity(){
 
     var tipo = " ";
     override fun onCreate(savedInstanceState: Bundle?) {

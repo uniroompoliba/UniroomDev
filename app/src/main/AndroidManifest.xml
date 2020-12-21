@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniroomF"
         android:usesCleartextTraffic="true">
-        <activity android:name=".storicoDocActivity"></activity>
+        <activity android:name=".utilityClasses.MiddleActivity"></activity>
+        <activity android:name=".storicoDocActivity" />
         <activity android:name=".menuPrincStud" />
         <activity android:name=".menuPrincDoc" />
-        <activity android:name=".prenotazStudActivity" />
+        <activity android:name=".PrenotazStudActivity" />
         <activity android:name=".storicoStudActivity" />
         <activity android:name=".recapActivity" />
         <activity
