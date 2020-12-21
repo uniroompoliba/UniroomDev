@@ -3,19 +3,9 @@ package com.example.uniroomf
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.JsonReader
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonArrayRequest
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import com.android.volley.*;
 import org.json.JSONObject
-import org.w3c.dom.Text
 
 
 // Recap singola prenotazione - quando viene finita una prenotazione, fare uscire il recap

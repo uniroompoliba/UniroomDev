@@ -18,12 +18,12 @@ import org.json.JSONObject
 import org.w3c.dom.Text
 import kotlin.concurrent.thread
 
-class prenotazStudActivity() : AppCompatActivity(), Parcelable {
+class PrenotazStudActivity() : AppCompatActivity(), Parcelable {
 
-    public var tipo = " ";
+    var tipo = " ";
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_prenotaz_doc)
+        setContentView(R.layout.activity_prenotaz_stud)
     }
 
     //Funzioni per l'alert
@@ -126,27 +126,3 @@ class prenotazStudActivity() : AppCompatActivity(), Parcelable {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
