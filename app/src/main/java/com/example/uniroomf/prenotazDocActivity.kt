@@ -25,16 +25,6 @@ class prenotazDocActivity : AppCompatActivity() {
         setContentView(R.layout.activity_prenotaz_doc)
     }
 
-    //Funzioni per l'alert
-    var lezioneButton = {dialog: DialogInterface, which:Int ->
-        tipo = "Lezione"
-    }
-
-    var esameButton = { dialog : DialogInterface, which:Int ->
-        tipo = "Esame"
-    }
-
-
 
     override fun onResume() {
         super.onResume() // Costruttore richiamato dalla superclasse
@@ -44,17 +34,6 @@ class prenotazDocActivity : AppCompatActivity() {
         var username = bundle!!.getString("user")
         var pw = bundle!!.getString("pw")
 
-        // Prendo i valori degli elementi grafici
-        var spinAula = findViewById<Spinner>(R.id.spinnerAule);
-        var aula = spinAula.selectedItem.toString()
-
-        var dataPren = findViewById<CalendarView>(R.id.calendPrenS).date.toString();
-
-        var spinOraInizio = findViewById<Spinner>(R.id.spinnerOraInizio)
-        var oraInizio = spinOraInizio.selectedItem.toString()
-
-        var spinOraFine = findViewById<Spinner>(R.id.spinnerOraFine)
-        var oraFine = spinOraFine.selectedItem.toString()
 
 
         // Creo il listener della prenotazione - quando viene premuto il pulsante creo un alert che
@@ -63,72 +42,156 @@ class prenotazDocActivity : AppCompatActivity() {
         var insPrenBtn = findViewById<Button>(R.id.invioPrenS)
         insPrenBtn.setOnClickListener{
 
+            // Prendo i valori degli elementi grafici
+            var spinAula = findViewById<Spinner>(R.id.spinnerAule);
+            var aula = spinAula.selectedItem.toString()
+
+            var dataPren = findViewById<CalendarView>(R.id.calendPrenS).date.toString();
+
+            var spinOraInizio = findViewById<Spinner>(R.id.spinnerOraInizio)
+            var oraInizio = spinOraInizio.selectedItem.toString()
+
+            var spinOraFine = findViewById<Spinner>(R.id.spinnerOraFine)
+            var oraFine = spinOraFine.selectedItem.toString()
+
 
             // Alert di scelta
-            var alertDialogBuilder = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AlertDialogCustom))
-            alertDialogBuilder.setTitle("Attenzione!")
-            alertDialogBuilder.setMessage("Che tipo di prenotazione si vuole effettuare?")
-            alertDialogBuilder.setPositiveButton("Lezione", DialogInterface.OnClickListener(lezioneButton))
-            alertDialogBuilder.setNegativeButton("Esame",DialogInterface.OnClickListener(esameButton))
-            alertDialogBuilder.show()
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Cosa si sta inserendo?")
+            builder.setMessage("Inserire tipo di prenotazione")
 
-            // Il programma deve continuare solo se è stato inserito il tipo
-            if (tipo != " ")
-            {
-                //Aggiungo l'elemento mancante al jsonObject da inviare
-                var datiPren = JSONObject()
-                datiPren.put("aula",aula)
-                datiPren.put("datazione",dataPren)
-                datiPren.put("oraInizio",oraInizio)
-                datiPren.put("oraFine",oraFine)
-                datiPren.put("tipologia",tipo)
-                datiPren.put("user",username)
-                datiPren.put("pw",pw)
+            builder.setPositiveButton("Lezione"){dialog, which : Int ->
+                    tipo = "Lezione"
 
-                // Request - parametri iniziali
-                var myRQ = Volley.newRequestQueue(this)
-                var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/prenDoc.php"
-
-                //Aggiungiamo gli header per accettare la comunicazione json
-                fun setMyHeader()
+                // Il programma deve continuare solo se è stato inserito il tipo
+                if (tipo != " ")
                 {
-                    var headers = HashMap<String, String>()
-                    headers.put("Content-Type", "application/json")
-                    headers.put("Accept", "application/json")
+                    //Aggiungo l'elemento mancante al jsonObject da inviare
+                    var datiPren = JSONObject()
+                    datiPren.put("aula",aula)
+                    datiPren.put("datazione",dataPren)
+                    datiPren.put("oraInizio",oraInizio)
+                    datiPren.put("oraFine",oraFine)
+                    datiPren.put("tipologia",tipo)
+                    datiPren.put("user",username)
+                    datiPren.put("pw",pw)
+
+                    // Request - parametri iniziali
+                    var myRQ = Volley.newRequestQueue(this)
+                    var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/prenDoc.php"
+
+                    //Aggiungiamo gli header per accettare la comunicazione json
+                    fun setMyHeader()
+                    {
+                        var headers = HashMap<String, String>()
+                        headers.put("Content-Type", "application/json")
+                        headers.put("Accept", "application/json")
+                    }
+
+                    setMyHeader()
+
+                    Thread{
+                        // Request effettiva - da qua
+                        val inviaPrenDoc = JsonObjectRequest(Request.Method.POST, urlPrenDoc, datiPren,
+                                Response.Listener { response ->
+                                    // In caso di risposta corretta apro il recap
+                                    if (response.get("tipoErr").toString().equals("Prenotazione correttamente effettuata."))
+                                    {
+                                        //Toast message
+                                        Toast.makeText(this,"Prenotazione correttamente effettuata",Toast.LENGTH_LONG).show()
+
+                                        // Apertura activity
+                                        var intentDoc = Intent(this,recapActivity::class.java)
+                                        intentDoc.putExtra("ruolo","Docente") // Grazie a questo saprò se far apparire il posto nel recap
+                                        intentDoc.putExtra("datiPrenStringa",datiPren.toString())
+                                        intentDoc.putExtra("email",username)
+                                        intentDoc.putExtra("pw",pw)
+                                        startActivity(intentDoc)
+                                    }
+
+                                },
+                                Response.ErrorListener { error ->
+                                    println("Errore rilevato: " + error.toString()) // Verifica dell'errore
+                                })
+
+
+                        //Invio effettivo della richiesta
+                        myRQ.add(inviaPrenDoc)
+                    }.start()
+
                 }
 
-                setMyHeader()
-
-                Thread{
-                    // Request effettiva - da qua
-                    val inviaPrenDoc = JsonObjectRequest(Request.Method.POST, urlPrenDoc, datiPren,
-                            Response.Listener { response ->
-                                // In caso di risposta corretta apro il recap
-                                if (response.get("tipoErr").toString().equals("Prenotazione correttamente effettuata."))
-                                {
-                                    //Toast message
-                                    Toast.makeText(this,"Prenotazione correttamente effettuata",Toast.LENGTH_LONG).show()
-
-                                    // Apertura activity
-                                    var intentDoc = Intent(this,recapActivity::class.java)
-                                    intentDoc.putExtra("ruolo","Docente") // Grazie a questo saprò se far apparire il posto nel recap
-                                    intentDoc.putExtra("datiPrenStringa",datiPren.toString())
-                                    intentDoc.putExtra("email",username)
-                                    intentDoc.putExtra("pw",pw)
-                                    startActivity(intentDoc)
-                                }
-
-                            },
-                            Response.ErrorListener { error ->
-                                println("Errore rilevato: " + error.toString()) // Verifica dell'errore
-                            })
-
-
-                    //Invio effettivo della richiesta
-                    myRQ.add(inviaPrenDoc)
-                }.start()
-
             }
+
+            builder.setNegativeButton("Esame"){dialog, which : Int ->
+                tipo = "Esame"
+
+                // Il programma deve continuare solo se è stato inserito il tipo
+                if (tipo != " ")
+                {
+                    //Aggiungo l'elemento mancante al jsonObject da inviare
+                    var datiPren = JSONObject()
+                    datiPren.put("aula",aula)
+                    datiPren.put("datazione",dataPren)
+                    datiPren.put("oraInizio",oraInizio)
+                    datiPren.put("oraFine",oraFine)
+                    datiPren.put("tipologia",tipo)
+                    datiPren.put("user",username)
+                    datiPren.put("pw",pw)
+
+                    // Request - parametri iniziali
+                    var myRQ = Volley.newRequestQueue(this)
+                    var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/prenDoc.php"
+
+                    //Aggiungiamo gli header per accettare la comunicazione json
+                    fun setMyHeader()
+                    {
+                        var headers = HashMap<String, String>()
+                        headers.put("Content-Type", "application/json")
+                        headers.put("Accept", "application/json")
+                    }
+
+                    setMyHeader()
+
+                    Thread{
+                        // Request effettiva - da qua
+                        val inviaPrenDoc = JsonObjectRequest(Request.Method.POST, urlPrenDoc, datiPren,
+                                Response.Listener { response ->
+                                    // In caso di risposta corretta apro il recap
+                                    if (response.get("tipoErr").toString().equals("Prenotazione correttamente effettuata."))
+                                    {
+                                        //Toast message
+                                        Toast.makeText(this,"Prenotazione correttamente effettuata",Toast.LENGTH_LONG).show()
+
+                                        // Apertura activity
+                                        var intentDoc = Intent(this,recapActivity::class.java)
+                                        intentDoc.putExtra("ruolo","Docente") // Grazie a questo saprò se far apparire il posto nel recap
+                                        intentDoc.putExtra("datiPrenStringa",datiPren.toString())
+                                        intentDoc.putExtra("email",username)
+                                        intentDoc.putExtra("pw",pw)
+                                        startActivity(intentDoc)
+                                    }
+
+                                },
+                                Response.ErrorListener { error ->
+                                    println("Errore rilevato: " + error.toString()) // Verifica dell'errore
+                                })
+
+
+                        //Invio effettivo della richiesta
+                        myRQ.add(inviaPrenDoc)
+                    }.start()
+
+                }
+            }
+
+            // Create the AlertDialog
+            val alertDialog: AlertDialog = builder.create()
+            // Set other dialog properties
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
+
 
 
         }

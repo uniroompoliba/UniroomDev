@@ -103,7 +103,8 @@ class acivityImpostazioni : AppCompatActivity() {
                     // Parametri per la comunicazione
             var urlCambioPass = "http://uniroompoliba.altervista.org/public/utilityScripts/cambiaPassword.php"
 
-            println("Nuova passowrd: " + newPass)
+            // Quando l'utente effettua la scelta --> Avviare request
+
 
             if(newPass != " ")
             {
@@ -130,7 +131,7 @@ class acivityImpostazioni : AppCompatActivity() {
             }
             else
             {
-                println("La nuova password è vuota!")
+               Toast.makeText(this,"Campo vuoto. Reinserire.", Toast.LENGTH_LONG).show()
             }
 
         }
