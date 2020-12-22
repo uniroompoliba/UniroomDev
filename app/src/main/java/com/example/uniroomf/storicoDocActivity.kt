@@ -10,7 +10,6 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.uniroomf.utilityClasses.MiddleActivity
 import com.example.uniroomf.utilityClasses.PrenInfo
 import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
 import org.json.JSONArray
@@ -19,57 +18,6 @@ import org.json.JSONObject
 class storicoDocActivity : AppCompatActivity() {
 
     // Uso l'array list perchè è la variante resizable della lista
-
-    fun generaPrenotazioni(c : JSONObject) : ArrayList<PrenInfo>
-    {
-
-        var listaElementi : ArrayList<PrenInfo> = ArrayList()
-        // Request per fare il retrieval delle query
-        var myRQ = Volley.newRequestQueue(this)
-        var urlPrenDoc = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
-
-
-        var superArray = JSONArray()
-
-        Thread{
-
-        var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenDoc, c,
-        Response.Listener { response ->
-            // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
-            // Devo estrarre i dati dal json
-            var dataArray = response.optJSONArray("data")
-
-            // I dati vengono presi correttamente - estrazione
-            for(i in 0 until dataArray.length())
-            {
-                val temp = dataArray.optJSONObject(i)
-                var oggettoLista = PrenInfo()
-
-                // Setto il singolo elemento della lista - i dati vengono presi correttamente
-                oggettoLista.setAula(temp.optString("aula"))
-                oggettoLista.setOraInizio(temp.optString("oraInizio"))
-                oggettoLista.setOraFine(temp.optString("oraFine"))
-                oggettoLista.setDataPren(temp.optString("datazione"))
-
-                listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
-            }
-
-                          },
-        Response.ErrorListener { error ->
-                // Errore
-                println(error.toString())
-        })
-
-            // Aggiunta alla coda delle richieste
-            myRQ.add(richiediPrenotazioni)
-
-        }.start()
-
-        println("Lista totale: " + listaElementi)
-        return listaElementi // Invia una lista vuota. Perchè?
-    }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,8 +74,6 @@ class storicoDocActivity : AppCompatActivity() {
                         listView.setPadding(10,10,10,10)
                         listView.adapter = adapter
 
-
-
                     },
                     Response.ErrorListener { error ->
                         // Errore
@@ -144,7 +90,7 @@ class storicoDocActivity : AppCompatActivity() {
     /*
           Qui dobbiamo lavorare gli elementi per lo storico della prenotazione.
           Implementare anche gli onClickListener per i due bottoni, che riguardano rispettivamente
-          la modifica e la cancellazione delle singole prenotazioni.
+          la modifica e la cancellazione delle singole prenotazioni. Attendo commit grafica di Carnicio
     */
 
 
