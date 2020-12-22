@@ -43,12 +43,13 @@
                 android:id="@+id/resPrenS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="240dp"
                 android:layout_marginTop="32dp"
                 android:backgroundTint="#50c9ff"
                 android:text="Reset"
                 android:textAllCaps="false"
                 android:textColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.749"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerOraFine" />
 

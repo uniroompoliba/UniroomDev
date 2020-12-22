@@ -24,7 +24,7 @@
         android:layout_width="253dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
-        android:text="Benvenuto in\nUniroom"
+        android:text="Benvenuto in\nUniRoom"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="?android:textColorPrimary"
