@@ -27,7 +27,7 @@
         android:text="Benvenuto in\nUniRoom"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="?android:textColorPrimary"
+        android:textColor="?android:textColorSecondary"
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="monospace"
