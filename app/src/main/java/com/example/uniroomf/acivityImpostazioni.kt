@@ -105,7 +105,6 @@ class acivityImpostazioni : AppCompatActivity() {
 
             // Quando l'utente effettua la scelta --> Avviare request
 
-            println("Nuova passowrd: " + newPass)
 
             if(newPass != " ")
             {
