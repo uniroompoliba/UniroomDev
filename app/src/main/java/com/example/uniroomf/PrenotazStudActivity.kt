@@ -36,7 +36,7 @@ class PrenotazStudActivity() : AppCompatActivity(){
         // Reset listener
         var rstBtn = findViewById<Button>(R.id.resPrenS)
         rstBtn.setOnClickListener {
-            // Imposto dei valori di partenza - sesso pazzo
+            // Imposto dei valori di partenza - sesso pazzo in carrozza
         }
 
     }
