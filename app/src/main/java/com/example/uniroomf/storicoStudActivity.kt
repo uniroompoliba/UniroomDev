@@ -13,6 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.uniroomf.utilityClasses.PrenInfo
 import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapter2
+import com.example.uniroomf.utilityClasses.ourAdapter.PrenAdapterStud
 import org.json.JSONObject
 import kotlin.concurrent.thread
 
@@ -30,61 +31,75 @@ class storicoStudActivity : AppCompatActivity () {
         var email = bundle2!!.get("user").toString()
         var pw = bundle2!!.get("password").toString()
 
+        // Parametri necessari alla comunicazione JSON
+        fun setMyHeader()
+        {
+            var headers = HashMap<String, String>()
+            headers.put("Content-Type", "application/json")
+            headers.put("Accept", "application/json")
+        }
+        setMyHeader()
+
         // JSOnObject da inviare
         var datiStud = JSONObject()
         datiStud.put("user",email)
         datiStud.put("pw",pw)
 
-        fun generaPrenotazione(c : JSONObject) : ArrayList<PrenInfo>
-        {
-            var listaElementi : ArrayList<PrenInfo>? = null;
-
-
-
-
-            return listaElementi!!
-        }
 
         // Request per fare il retrieval delle query
         var myRQ = Volley.newRequestQueue(this)
-        var urlPrenStud = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenDoc.php"
+        var urlPrenStud = "http://uniroompoliba.altervista.org/public/ScriptStudenti/estraiPrenStud.php"
 
-        var adapter = PrenAdapter2(this, generaPrenotazione(datiStud))
-        setBtn.setOnClickListener {
-            val aula = findViewById<Spinner>(R.id.spinnerTipologia).textAlignment.toString()
-            val docente = findViewById<Spinner>(R.id.spinnerDocente).textAlignment.toString()
-            var matST = findViewById<Spinner>(R.id.spinnerMateria).textAlignment.toString()
-            var listStorST = findViewById<ListView>(R.id.listaStorStud)
-            listStorST.setAdapter(adapter)
+        // Cambio piani. Faccio la request qua dentro e setto l'adapter in base a quello
+        var listaElementi : ArrayList<PrenInfo> = ArrayList()
 
+        Thread{
 
-            fun setMyHeader()
-            {
-                var headers = HashMap<String, String>()
-                headers.put("Content-Type", "application/json")
-                headers.put("Accept", "application/json")
-            }
-        }
-
-        thread {
             var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenStud, datiStud,
                     Response.Listener { response ->
-                // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
-                var stringaPren = response.get("data") // Creo il json string che poi dovrò iterare
-                println(stringaPren)
+                        // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
+                        // Devo estrarre i dati dal json
+                        var dataArray = response.optJSONArray("data")
 
+                        // I dati vengono presi correttamente - estrazione
+                        for(i in 0 until dataArray.length())
+                        {
+                            val temp = dataArray.optJSONObject(i)
+                            var oggettoLista = PrenInfo()
 
-            },
-            Response.ErrorListener { error ->
-                // Errore
-                println(error.toString())
-            })
+                            // Setto il singolo elemento della lista - i dati vengono presi correttamente
+                            oggettoLista.setAula(temp.optString("aula"))
+                            oggettoLista.setOraInizio(temp.optString("oraInizio"))
+                            oggettoLista.setOraFine(temp.optString("oraFine"))
+                            oggettoLista.setDataPren(temp.optString("datazione"))
 
+                            listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
+                        }
+
+                        // Creo un'istanza dell'adapter
+                        var adapter = PrenAdapterStud(this, listaElementi)
+
+                        // Creo la list view e gli attacco l'adapter
+                        var listView = findViewById<ListView>(R.id.listaStorDoc)
+                        listView.setPadding(10,10,10,10)
+                        listView.adapter = adapter
+
+                    },
+                    Response.ErrorListener { error ->
+                        // Errore
+                        println(error.toString())
+                    })
+
+            // Aggiunta alla coda delle richieste
             myRQ.add(richiediPrenotazioni)
+
         }.start()
+
+
+
+        }
+
     }
 
 
-
-    }
 

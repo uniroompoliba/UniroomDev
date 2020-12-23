@@ -12,10 +12,11 @@ class PrenInfo
         4. Ora Fine
      */
 
-    private var aula = "";
-    private var dataPren = " ";
-    private var oraInizio = " ";
-    private var oraFine = " ";
+    private var aula = ""
+    private var dataPren = " "
+    private var oraInizio = " "
+    private var oraFine = " "
+    private var posto = " "
 
     // Implemento i getter e setter necessari per rispettare l'Information Hiding
 
@@ -37,6 +38,11 @@ class PrenInfo
     fun getOraFine() : String?
     {
         return this.oraFine
+    }
+
+    fun getPosto() : String?
+    {
+        return this.posto
     }
 
     // Setter
@@ -61,5 +67,9 @@ class PrenInfo
         this.oraFine = s
     }
 
+    fun setPosto(s : String)
+    {
+        this.posto = s
+    }
 
 }
