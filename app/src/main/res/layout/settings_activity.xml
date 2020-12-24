@@ -79,8 +79,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="PIPPO FRANCO"
-        android:textColor="?android:textColorPrimary"
-        android:textStyle="bold" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/emailLabel"
@@ -101,8 +100,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="Metti E-mail"
-        android:textColor="?android:textColorPrimary"
-        android:textStyle="bold" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/roleLabel"
@@ -123,8 +121,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="Metti ruolo"
-        android:textColor="?android:textColorPrimary"
-        android:textStyle="bold" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/numLabel"
@@ -145,8 +142,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="Metti il numero delle prenotazioni "
-        android:textColor="?android:textColorPrimary"
-        android:textStyle="bold" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/matLabel"
@@ -167,8 +163,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:text="123456"
-        android:textColor="?android:textColorPrimary"
-        android:textStyle="bold" />
+        android:textColor="?android:textColorPrimary" />
 
     <View
         android:id="@+id/divider1"
