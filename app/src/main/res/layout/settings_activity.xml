@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/costraintLayout"
@@ -9,21 +10,21 @@
         android:id="@+id/modPassw"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/divider2"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="#50C9FF"
         android:text="Modifica Password"
         android:textColor="#000000"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:iconTint="#FFFFFF" />
 
     <Button
         android:id="@+id/cancProfile"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_below="@id/modPassw"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#50C9FF"
         android:text="Cancella profilo"
         android:textColor="#000000"
@@ -38,192 +39,153 @@
         android:id="@+id/nightSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:checked="false"
         android:editable="true"
         android:enabled="true"
         android:text="Modalità notte"
         android:textStyle="bold"
-        android:textColor="?android:textColorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
         android:id="@+id/titleLabel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Riepilogo account"
         android:textColor="?android:textColorPrimary"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/nomeCogLabel"
+        android:layout_below="@id/titleLabel1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Nome: "
-        android:textColor="#50c9ff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/nomeValue"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        android:textColor="#50c9ff" />
 
     <TextView
         android:id="@+id/nomeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/titleLabel1"
+        android:layout_toRightOf="@id/nomeCogLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="PIPPO FRANCO"
         android:textColor="?android:textColorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.26"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nomeCogLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Indirizzo e-mail: "
-        android:textColor="#50c9ff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/emailValue"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        android:textColor="#50c9ff" />
 
     <TextView
         android:id="@+id/emailValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/nomeCogLabel"
+        android:layout_toRightOf="@id/emailLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Metti E-mail"
         android:textColor="?android:textColorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.396"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.125" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/roleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/emailLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Ruolo: "
-        android:textColor="#50c9ff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/roleValue"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        android:textColor="#50c9ff" />
 
     <TextView
         android:id="@+id/roleValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/emailLabel"
+        android:layout_toRightOf="@id/roleLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Metti ruolo"
         android:textColor="?android:textColorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.214"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.178" />
+        android:textStyle="bold" />
 
-        <TextView
+    <TextView
         android:id="@+id/numLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/roleLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Prenotazioni effettuate:"
-        android:textColor="#50c9ff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/numValue"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        android:textColor="#50c9ff" />
 
     <TextView
         android:id="@+id/numValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/roleLabel"
+        android:layout_toRightOf="@id/numLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Metti il numero delle prenotazioni "
         android:textColor="?android:textColorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.917"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/matLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/numLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Matricola: "
-        android:textColor="#50c9ff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/matValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.233" />
+        android:textColor="#50c9ff" />
 
     <TextView
         android:id="@+id/matValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="es. 123456"
+        android:layout_below="@id/numLabel"
+        android:layout_toRightOf="@id/matLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="123456"
         android:textColor="?android:textColorPrimary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.291"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.233" />
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/divider1"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/matLabel"
+        android:layout_marginTop="20dp"
         android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341" />
+        android:backgroundTint="@color/teal_700" />
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
+        android:layout_below="@id/nightSwitch"
+        android:layout_marginTop="10dp"
         android:background="@color/teal_700"
-        android:backgroundTint="@color/teal_700"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        android:backgroundTint="@color/teal_700" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
