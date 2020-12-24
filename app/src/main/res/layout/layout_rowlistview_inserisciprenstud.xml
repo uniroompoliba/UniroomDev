@@ -60,7 +60,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:text="INIZIO:"
         android:textSize="20sp"
         android:textColor="#50c9ff"
@@ -74,7 +73,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:text="8:30"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
@@ -88,7 +86,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
         android:text="FINE:"
         android:textColor="#50c9ff"
         android:textSize="20sp"
@@ -102,10 +99,70 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
         android:text="11:00"
         android:textColor="?android:textColorPrimary"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeDocente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomeOraInizio"
+        android:text="DOCENTE:"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#50c9ff"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/Docente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/nomeDocente"
+        android:layout_below="@id/nomeOraInizio"
+        android:text="nome del docente"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nomeTipologia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nomeDocente"
+        android:text="TIPOLOGIA: "
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#50c9ff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Tipologia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/nomeTipologia"
+        android:layout_below="@id/nomeDocente"
+        android:text="lezione o esame"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/confPren"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:backgroundTint="#50c9ff"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
 </RelativeLayout>
