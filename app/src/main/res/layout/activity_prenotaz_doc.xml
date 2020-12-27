@@ -88,7 +88,7 @@
 
             <Spinner
                 android:id="@+id/spinnerGiorno"
-                android:layout_width="83dp"
+                android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginTop="3dp"
                 android:entries="@array/Giorno"
@@ -99,7 +99,7 @@
 
             <Spinner
                 android:id="@+id/spinnerMese"
-                android:layout_width="83dp"
+                android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
@@ -168,7 +168,7 @@
 
             <Spinner
                 android:id="@+id/spinnerAnno"
-                android:layout_width="101dp"
+                android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="3dp"
