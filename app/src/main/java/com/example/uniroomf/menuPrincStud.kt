@@ -29,7 +29,7 @@ class menuPrincStud : AppCompatActivity() {
 
         var histBtn = findViewById<Button>(R.id.storPrenStud)
         histBtn.setOnClickListener {
-            var intentHis = Intent (this, PrenotazStudActivity::class.java)
+            var intentHis = Intent (this, storicoStudActivity::class.java)
             intentHis.putExtra("user",email)
             intentHis.putExtra("pw",pw)
             startActivity(intentHis)
@@ -37,7 +37,7 @@ class menuPrincStud : AppCompatActivity() {
 
         var settingBtn = findViewById<Button>(R.id.settings)
         settingBtn.setOnClickListener {
-            var intentSetting = Intent(this, PrenotazStudActivity::class.java)
+            var intentSetting = Intent(this, acivityImpostazioni::class.java)
             intentSetting.putExtra("user", email)
             intentSetting.putExtra("pw", pw)
             startActivity(intentSetting)

@@ -29,7 +29,7 @@ class storicoStudActivity : AppCompatActivity () {
 
         val bundle2 = intent.extras
         var email = bundle2!!.get("user").toString()
-        var pw = bundle2!!.get("password").toString()
+        var pw = bundle2!!.get("pw").toString()
 
         // Parametri necessari alla comunicazione JSON
         fun setMyHeader()
@@ -80,8 +80,7 @@ class storicoStudActivity : AppCompatActivity () {
                         var adapter = PrenAdapterStud(this, listaElementi)
 
                         // Creo la list view e gli attacco l'adapter
-                        var listView = findViewById<ListView>(R.id.listaStorDoc)
-                        listView.setPadding(10,10,10,10)
+                        var listView = findViewById<ListView>(R.id.listaStorStud)
                         listView.adapter = adapter
 
                     },

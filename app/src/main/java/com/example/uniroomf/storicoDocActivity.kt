@@ -67,7 +67,7 @@ class storicoDocActivity : AppCompatActivity() {
                         }
 
                         // Creo un'istanza dell'adapter
-                        var adapter = PrenAdapter2(this, listaElementi)
+                        var adapter = PrenAdapter2(this, listaElementi,email, pw)
 
                         // Creo la list view e gli attacco l'adapter
                         var listView = findViewById<ListView>(R.id.listaStorDoc)
