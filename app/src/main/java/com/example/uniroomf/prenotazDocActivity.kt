@@ -73,9 +73,6 @@ class prenotazDocActivity : AppCompatActivity() {
         // Settaggio valore conosciuto calendario
         if(datazioneRicevuta != null)
         {
-            // Prendo la view del calendario
-            var cal = findViewById<CalendarView>(R.id.calendPrenS)
-            cal.setDate(datazioneRicevuta.toLong(), true, true)
 
         }
 
@@ -102,23 +99,13 @@ class prenotazDocActivity : AppCompatActivity() {
             var aula = spinAula.selectedItem.toString()
 
 
-            // get a calendar instance
-            val calendar = Calendar.getInstance()
-            var calendarView = findViewById<CalendarView>(R.id.calendPrenS)
 
-            // calendar view date change listener
-            calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-                // set the calendar date as calendar view selected date
-                calendar.set(year, month, dayOfMonth)
 
-                // set this date as calendar view selected date
-                calendarView.date = calendar.timeInMillis
-            }
 
             // Creo il valore della data finale
             var dataFin = String()
 
-            var dataPren = findViewById<CalendarView>(R.id.calendPrenS).date // Mi restituisce un long
+            var dataPren = "Prova"
 
 
 
