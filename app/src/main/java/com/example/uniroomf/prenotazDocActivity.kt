@@ -25,8 +25,6 @@ class prenotazDocActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prenotaz_doc)
 
-        // Setto il listener per il cambio del calendario
-
     }
 
 
@@ -73,7 +71,72 @@ class prenotazDocActivity : AppCompatActivity() {
         // Settaggio valore conosciuto calendario
         if(datazioneRicevuta != null)
         {
+            println("Datazione ricevuta: " + datazioneRicevuta)
+            var dataSplittata = datazioneRicevuta.split("/")
 
+
+            // Inserisco il valore dello spinner del giorno
+            var arrayGiorno = resources.getStringArray(R.array.Giorno)
+
+            var letterIndex = 0
+            var i = 0
+
+            for(i in 0 until dataSplittata.size)
+            {
+                println(dataSplittata.get(i))
+            }
+
+            // Ciclo per prendere l'indice per settare lo spinner
+            for(i in 0 until arrayGiorno.size)
+            {
+                if(arrayGiorno.get(i).equals(dataSplittata.get(0)))
+                {
+                    letterIndex = i
+                }
+            }
+
+            // Setto lo spinner del giorno
+            findViewById<Spinner>(R.id.spinnerGiorno).setSelection(letterIndex)
+
+            // Inserisco il valore per lo spinner del mese
+            var arrayMese = resources.getStringArray(R.array.Mese)
+
+            letterIndex = 0
+            i = 0
+
+            // Ciclo per prendere l'indice per lo spinner
+            for(i in 0 until arrayMese.size)
+            {
+                if(arrayMese.get(i).equals(dataSplittata.get(1)))
+                {
+                    letterIndex = i
+                }
+            }
+
+            findViewById<Spinner>(R.id.spinnerMese).setSelection(letterIndex)
+
+            // Inserisco il valore per lo spinner dell'anno
+            var arrayAnno = resources.getStringArray(R.array.Anno)
+
+            // Setto le variabili di utility a 0
+            letterIndex = 0
+            i = 0
+
+            // Ciclo per prendere l'indice per settare lo spinner
+            for(i in 0 until arrayAnno.size)
+            {
+                if(arrayAnno.get(i).equals(dataSplittata.get(2)))
+                {
+                    letterIndex = i
+                }
+            }
+
+            // Setto lo spinner dell'anno
+            findViewById<Spinner>(R.id.spinnerAnno).setSelection(letterIndex)
+        }
+        else
+        {
+            Toast.makeText(this,"Data vuota!",Toast.LENGTH_LONG)
         }
 
         // Settaggio valore conosciuto ora Inizio
@@ -98,20 +161,19 @@ class prenotazDocActivity : AppCompatActivity() {
             var spinAula = findViewById<Spinner>(R.id.spinnerAule);
             var aula = spinAula.selectedItem.toString()
 
+            // Spinner calendario
+            var giornoPren = findViewById<Spinner>(R.id.spinnerGiorno).selectedItem.toString()
+            var mesePren = findViewById<Spinner>(R.id.spinnerMese).selectedItem.toString()
+            var annoPren = findViewById<Spinner>(R.id.spinnerAnno).selectedItem.toString()
 
+            var dataPren = giornoPren + "/" + mesePren + "/" + annoPren
+            println(dataPren);
 
-
-
-            // Creo il valore della data finale
-            var dataFin = String()
-
-            var dataPren = "Prova"
-
-
-
+            // Spinner ora inizio
             var spinOraInizio = findViewById<Spinner>(R.id.spinnerOraInizio)
             var oraInizio = spinOraInizio.selectedItem.toString()
 
+            // Spinner ora fine
             var spinOraFine = findViewById<Spinner>(R.id.spinnerOraFine)
             var oraFine = spinOraFine.selectedItem.toString()
 
@@ -130,7 +192,7 @@ class prenotazDocActivity : AppCompatActivity() {
                     //Aggiungo l'elemento mancante al jsonObject da inviare
                     var datiPren = JSONObject()
                     datiPren.put("aula", aula)
-                    datiPren.put("datazione", dataFin)
+                    datiPren.put("datazione", dataPren)
                     datiPren.put("oraInizio", oraInizio)
                     datiPren.put("oraFine", oraFine)
                     datiPren.put("tipologia", tipo)
@@ -190,7 +252,7 @@ class prenotazDocActivity : AppCompatActivity() {
                     //Aggiungo l'elemento mancante al jsonObject da inviare
                     var datiPren = JSONObject()
                     datiPren.put("aula", aula)
-                    datiPren.put("datazione", dataFin)
+                    datiPren.put("datazione", dataPren)
                     datiPren.put("oraInizio", oraInizio)
                     datiPren.put("oraFine", oraFine)
                     datiPren.put("tipologia", tipo)
@@ -205,7 +267,7 @@ class prenotazDocActivity : AppCompatActivity() {
 
                     // Request - parametri iniziali
                     var myRQ = Volley.newRequestQueue(this)
-                    var urlUpdate = "http://uniroompoliba.altervista.org/public/utilityScripts/aggiornaPren.php"
+                    var urlUpdate = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/aggiornaPren.php"
 
                     //Aggiungiamo gli header per accettare la comunicazione json
                     fun setMyHeader()
@@ -223,6 +285,7 @@ class prenotazDocActivity : AppCompatActivity() {
 
                         var aggiornaPren = JsonObjectRequest(Request.Method.POST, urlUpdate, datiPren,
                                 Response.Listener { response ->
+                                    println("Risposta ricevuta: " + response.toString())
                                     // Update completato, torno allo storic
                                     if (response.get("tipoErr").toString() == "0") {
                                         Toast.makeText(this, "Prenotazione correttamente aggiornata!", Toast.LENGTH_LONG).show()
@@ -238,6 +301,7 @@ class prenotazDocActivity : AppCompatActivity() {
                                     println("Errore rilevato: " + error.toString())
 
                                 })
+                        myRQ.add(aggiornaPren)
                     }.start()
                 }
             }
@@ -323,7 +387,7 @@ class prenotazDocActivity : AppCompatActivity() {
 
                     // Request - parametri iniziali
                     var myRQ = Volley.newRequestQueue(this)
-                    var urlUpdate = "http://uniroompoliba.altervista.org/public/utilityScripts/aggiornaPren.php"
+                    var urlUpdate = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/aggiornaPren.php"
 
                     //Aggiungiamo gli header per accettare la comunicazione json
                     fun setMyHeader()
@@ -356,6 +420,8 @@ class prenotazDocActivity : AppCompatActivity() {
                                     println("Errore rilevato: " + error.toString())
 
                                 })
+
+                        myRQ.add(aggiornaPren)
                     }.start()
                 }
             }
@@ -365,8 +431,6 @@ class prenotazDocActivity : AppCompatActivity() {
             // Set other dialog properties
             alertDialog.setCancelable(false)
             alertDialog.show()
-
-
         }
 
 
@@ -376,9 +440,17 @@ class prenotazDocActivity : AppCompatActivity() {
         rstBtn.setOnClickListener {
 
         // Imposto dei valori di partenza
+            findViewById<Spinner>(R.id.spinnerAule).setSelection(0) // Setto il valore dello spinner alla lettera A
+
+            findViewById<Spinner>(R.id.spinnerGiorno).setSelection(0) // Setto il valore dello spinner al giorno 01
+            findViewById<Spinner>(R.id.spinnerMese).setSelection(0) // Setto il valore dello spinner a Gennaio
+            findViewById<Spinner>(R.id.spinnerAnno).setSelection(0) // Setto il valore dello spinner a 2020
+
+            // Setto ora di inizio e fine ai valori di default
+            findViewById<Spinner>(R.id.spinnerOraInizio).setSelection(0) // Setto il valore dell'ora inizio a 8:30
+            findViewById<Spinner>(R.id.spinnerOraFine).setSelection(0)   // Setto il valore dell'ora fine a 11:00
 
         }
-
     }
 
 }

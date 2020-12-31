@@ -47,43 +47,38 @@ class PrenotazStudActivity() : AppCompatActivity(){
         var myRQ = Volley.newRequestQueue(this)
         var urlEstraiPrenEsistenti = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/estraiPrenStud_areaPren.php"
 
-        var prendiPrenotazioni = JsonObjectRequest(Request.Method.POST, urlEstraiPrenEsistenti, null,
-        Response.Listener { response ->
-            // Risposta ottenuta - estrazione
-            var dataArray = response.optJSONArray("data")
+        Thread{
+            var prendiPrenotazioni = JsonObjectRequest(Request.Method.POST, urlEstraiPrenEsistenti, null,
+                    Response.Listener { response ->
+                        // Risposta ottenuta - estrazione
+                        var dataArray = response.optJSONArray("data")
 
-            for(i in 0 until dataArray.length())
-            {
-                val temp = dataArray.optJSONObject(i)
-                var oggettoLista = PrenInfo()
+                        for(i in 0 until dataArray.length())
+                        {
+                            val temp = dataArray.optJSONObject(i)
+                            var oggettoLista = PrenInfo()
 
-                // Setto il singolo elemento della lista - i dati vengono presi correttamente
-                oggettoLista.setAula(temp.optString("aula"))
-                oggettoLista.setOraInizio(temp.optString("oraInizio"))
-                oggettoLista.setOraFine(temp.optString("oraFine"))
-                oggettoLista.setDataPren(temp.optString("datazione"))
+                            // Setto il singolo elemento della lista - i dati vengono presi correttamente
+                            oggettoLista.setAula(temp.optString("aula"))
+                            oggettoLista.setOraInizio(temp.optString("oraInizio"))
+                            oggettoLista.setOraFine(temp.optString("oraFine"))
+                            oggettoLista.setDataPren(temp.optString("datazione"))
+                            listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
+                        }
 
-                listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
-            }
+                        // Creo un'istanza dell'adapter
+                        var adapter = PrenAdapterStud_InsPren(this, listaElementi)
 
-            // Creo un'istanza dell'adapter
-            var adapter = PrenAdapterStud_InsPren(this, listaElementi)
+                        // Creo la list view e gli attacco l'adapter
+                        var listView = findViewById<ListView>(R.id.listaStorDoc)
+                        listView.adapter = adapter
+                    },
+                    Response.ErrorListener { error ->
+                        println("Errore rilevato: " + error.toString())
+                    })
 
-            // Creo la list view e gli attacco l'adapter
-            var listView = findViewById<ListView>(R.id.listaStorDoc)
-            listView.setPadding(10,10,10,10)
-            listView.adapter = adapter
-        },
-        Response.ErrorListener { error ->
-
-        })
-
-
-        // Reset listener
-        var rstBtn = findViewById<Button>(R.id.resPrenS)
-        rstBtn.setOnClickListener {
-            // Imposto dei valori di partenza
-        }
+        myRQ.add(prendiPrenotazioni)
+        }.start()
 
     }
 

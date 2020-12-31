@@ -17,6 +17,7 @@ class PrenInfo
     private var oraInizio = " "
     private var oraFine = " "
     private var posto = " "
+    private var tipo = " "
 
     // Implemento i getter e setter necessari per rispettare l'Information Hiding
 
@@ -45,6 +46,11 @@ class PrenInfo
         return this.posto
     }
 
+    fun getTipo() : String?
+    {
+        return this.tipo
+    }
+
     // Setter
 
     fun setAula(a : String)
@@ -70,6 +76,11 @@ class PrenInfo
     fun setPosto(s : String)
     {
         this.posto = s
+    }
+
+    fun setTipo(s : String)
+    {
+        this.tipo = s
     }
 
 }

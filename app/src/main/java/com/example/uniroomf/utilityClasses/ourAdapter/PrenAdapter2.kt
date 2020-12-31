@@ -55,6 +55,9 @@ class PrenAdapter2 constructor(var t : Context, p : ArrayList<PrenInfo>, e : Str
         var testoOraFine = p1!!.findViewById<TextView>(R.id.OraFinale)
         testoOraFine.setText(prenotazione.getOraFine())
 
+        var tipo = p1!!.findViewById<TextView>(R.id.Tipologia)
+        tipo.setText(prenotazione.getTipo())
+
         // Prendo i bottoni
 
         var modBtn = p1!!.findViewById<ImageButton>(R.id.modificaPren)

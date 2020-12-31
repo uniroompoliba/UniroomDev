@@ -50,9 +50,7 @@ class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>): Bas
         var testoOraFine = p1!!.findViewById<TextView>(R.id.OraFinale)
         testoOraFine.setText(prenotazione.getOraFine())
 
-        // Come differenza rispetto al docente, dobbiamo settare il posto
-        var testoPosto = p1!!.findViewById<TextView>(R.id.Posto)
-        testoPosto.setText(prenotazione.getPosto())
+
 
 
         // Effettuo il return della View
