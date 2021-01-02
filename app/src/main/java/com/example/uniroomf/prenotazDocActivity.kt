@@ -167,7 +167,6 @@ class prenotazDocActivity : AppCompatActivity() {
             var annoPren = findViewById<Spinner>(R.id.spinnerAnno).selectedItem.toString()
 
             var dataPren = giornoPren + "/" + mesePren + "/" + annoPren
-            println(dataPren);
 
             // Spinner ora inizio
             var spinOraInizio = findViewById<Spinner>(R.id.spinnerOraInizio)

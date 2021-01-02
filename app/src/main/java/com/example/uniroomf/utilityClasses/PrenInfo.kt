@@ -18,6 +18,7 @@ class PrenInfo
     private var oraFine = " "
     private var posto = " "
     private var tipo = " "
+    private var datiDoc = " "
 
     // Implemento i getter e setter necessari per rispettare l'Information Hiding
 
@@ -51,6 +52,11 @@ class PrenInfo
         return this.tipo
     }
 
+    fun getDocente() : String?
+    {
+        return this.datiDoc
+    }
+
     // Setter
 
     fun setAula(a : String)
@@ -81,6 +87,11 @@ class PrenInfo
     fun setTipo(s : String)
     {
         this.tipo = s
+    }
+
+    fun setDoc(s : String)
+    {
+        this.datiDoc = s
     }
 
 }

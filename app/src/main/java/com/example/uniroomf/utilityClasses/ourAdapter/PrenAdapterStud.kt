@@ -52,7 +52,6 @@ class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>): Bas
 
 
 
-
         // Effettuo il return della View
         return p1!!
     }

@@ -72,8 +72,13 @@ class logActivity : AppCompatActivity() {
                                         var passaggio = Intent(this, menuPrincDoc::class.java)
 
                                         //Aggiungo username e password, mi servirà nello script PHP
+
+                                        // Refuso 2/01/2021 -> Aggiungo anche il ruolo, utile per recapActivity
+
                                         passaggio.putExtra("user",username)
                                         passaggio.putExtra("pw",password)
+                                        passaggio.putExtra("ruolo",ruolo)
+
                                         startActivity(passaggio)  //passaggio da login andato a buon fine al menù prenotazione del docente
                                     }
                                 else
@@ -83,8 +88,13 @@ class logActivity : AppCompatActivity() {
                                         var passaggio2 = Intent(this,menuPrincStud::class.java)
 
                                         //Aggiungo username e password, mi servirà nello script PHP
+
+                                        // Refuso 2/01/2021 -> Aggiungo anche il ruolo, utile per recapActivity
+
                                         passaggio2.putExtra("user",username)
                                         passaggio2.putExtra("pw",password)
+                                        passaggio2.putExtra("ruolo",ruolo)
+
                                         startActivity(passaggio2) // Passaggio andato a buon fine - apro prenotazione studente
 
                                     }

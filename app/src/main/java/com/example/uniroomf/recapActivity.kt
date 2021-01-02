@@ -31,6 +31,7 @@ class recapActivity : AppCompatActivity() {
         var ruoloRicevuto = bundlericevuto!!.getString("ruolo")
         var email = bundlericevuto!!.get("email").toString()
         var pw = bundlericevuto!!.get("pw").toString()
+        var posto = bundlericevuto!!.get("posto").toString()
 
         //Creo il jsonObject dalla stringa ricevuta
         var datiPrenInjson = JSONObject(stringaPren)
@@ -48,7 +49,7 @@ class recapActivity : AppCompatActivity() {
 
         if(ruoloRicevuto.equals("Studente"))
         {
-            findViewById<TextView>(R.id.postoValue).setText("Posto"); // da settare quando sarà presente il menu di inserimento studente
+            findViewById<TextView>(R.id.postoValue).setText(posto); // Posto settato
         }
         else
         {
@@ -69,8 +70,8 @@ class recapActivity : AppCompatActivity() {
             }
             else
             {
-                //Se studente, passaggio a lista prenotazioni
-                var intentLista = Intent(this,PrenotazStudActivity::class.java)
+                //Se studente, passaggio a suo storico prenotazione
+                var intentLista = Intent(this,storicoStudActivity::class.java)
                 startActivity(intentLista)
             }
 

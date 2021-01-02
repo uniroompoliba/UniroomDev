@@ -35,6 +35,7 @@ class PrenotazStudActivity() : AppCompatActivity(){
         val bundle: Bundle? = intent.extras
         var username = bundle!!.getString("user")
         var pw = bundle!!.getString("pw")
+        var ruolo = bundle!!.getString("ruolo")
 
         /*
             In questa activity creo la lista e poi in base al pulsante aggiungo la prenotazione
@@ -63,14 +64,24 @@ class PrenotazStudActivity() : AppCompatActivity(){
                             oggettoLista.setOraInizio(temp.optString("oraInizio"))
                             oggettoLista.setOraFine(temp.optString("oraFine"))
                             oggettoLista.setDataPren(temp.optString("datazione"))
+                            oggettoLista.setTipo(temp.optString("tipologia"))
+
+                            // Prendo nome e cognome del docente
+                            var nomeDoc = temp.optString("nomeDoc")
+                            var cognomeDoc = temp.optString("cogDoc")
+
+                            // Setto il nome del docente
+                            var doc = nomeDoc + " " + cognomeDoc
+                            oggettoLista.setDoc(doc)
+
                             listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
                         }
 
                         // Creo un'istanza dell'adapter
-                        var adapter = PrenAdapterStud_InsPren(this, listaElementi)
+                        var adapter = PrenAdapterStud_InsPren(this, listaElementi, username, pw, ruolo)
 
                         // Creo la list view e gli attacco l'adapter
-                        var listView = findViewById<ListView>(R.id.listaStorDoc)
+                        var listView = findViewById<ListView>(R.id.listaInsPrenStud)
                         listView.adapter = adapter
                     },
                     Response.ErrorListener { error ->

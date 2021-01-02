@@ -8,9 +8,16 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.example.uniroomf.R
 import com.example.uniroomf.prenotazDocActivity
+import com.example.uniroomf.storicoDocActivity
 import com.example.uniroomf.utilityClasses.PrenInfo
+import org.json.JSONObject
 
 class PrenAdapter2 constructor(var t : Context, p : ArrayList<PrenInfo>, e : String, pw2 : String): BaseAdapter()
 {
@@ -82,9 +89,63 @@ class PrenAdapter2 constructor(var t : Context, p : ArrayList<PrenInfo>, e : Str
             context!!.startActivity(apriPren)  // Passaggio alla activity, vediamo se funziona
         }
 
+
+        // Pulsante elimina prenotazione
+
         var delPrenBtn = p1!!.findViewById<ImageButton>(R.id.eliminaPren)
         delPrenBtn.setOnClickListener {
             // Elimina prenotazione
+
+            // Parametri per la request
+            var myRQ = Volley.newRequestQueue(context)
+            var urlElim = "http://uniroompoliba.altervista.org/public/ScriptPrenotazioni/delPren.php"
+
+            // Uso i parametri passati quando creo l'istanza dell'adapter
+            Thread{
+
+                // JSON object contenente i dati del professore e della prenotazione da eliminare
+                var mioDoc = JSONObject()
+                mioDoc.put("email",emailDoc2)
+                mioDoc.put("pw",passwordDoc)
+                mioDoc.put("aula",prenotazione.getAula().toString())
+                mioDoc.put("datazione",prenotazione.getDataPren())
+                mioDoc.put("oraInizio",prenotazione.getOraInizio())
+                mioDoc.put("oraFine", prenotazione.getOraFine())
+
+                // Request
+                var delPren = JsonObjectRequest(Request.Method.POST, urlElim, mioDoc,
+                        Response.Listener { response ->
+                            // Messaggio di avvenuta eliminazione
+
+                            if (response.get("tipoErr") == 0)
+                            {
+                                // Toast di corretta eliminazione
+                                Toast.makeText(context, "Eliminazione correttamente avvenuta!",Toast.LENGTH_LONG)
+                                var passaStorico = Intent(context, storicoDocActivity::class.java)
+
+                                // Aggiungo i dati al bundle
+                                passaStorico.putExtra("user",emailDoc2)
+                                passaStorico.putExtra("password",passwordDoc)
+
+                                // Apro l'activity
+                                context!!.startActivity(passaStorico)
+
+                            }
+                            else
+                            {
+                                // Printo il messaggio ricevuto dal server
+                                print("Messaggio ricevuto: " + response.get("tipoErr").toString())
+                            }
+
+                        },
+                        Response.ErrorListener { error ->
+                                // Printo l'errore
+                                print("Errore ricevuto: " + error.toString())
+                        }
+                )
+
+                myRQ.add(delPren)
+            }.start()
         }
 
 
