@@ -89,7 +89,7 @@ class storicoStudActivity : AppCompatActivity () {
                         }
 
                         // Creo un'istanza dell'adapter
-                        var adapter = PrenAdapterStud(this, listaElementi)
+                        var adapter = PrenAdapterStud(this, listaElementi, email, pw, "Studente")
 
                         // Creo la list view e gli attacco l'adapter
 
