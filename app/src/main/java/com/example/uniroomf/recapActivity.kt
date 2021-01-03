@@ -42,10 +42,12 @@ class recapActivity : AppCompatActivity() {
         var oraInizioRecap = datiPrenInjson.get("oraInizio").toString()
         var oraFineRecap = datiPrenInjson.get("oraFine").toString()
         var tipologiaRecap = datiPrenInjson.get("tipologia").toString()
+        var postoRecap = datiPrenInjson.get("posto").toString()
 
         findViewById<TextView>(R.id.aulaValue).setText(aulaRecap)
         findViewById<TextView>(R.id.startValue).setText(oraInizioRecap)
         findViewById<TextView>(R.id.endValue).setText(oraFineRecap)
+        findViewById<TextView>(R.id.postoValue).setText(postoRecap)
 
         if(ruoloRicevuto.equals("Studente"))
         {
@@ -72,6 +74,11 @@ class recapActivity : AppCompatActivity() {
             {
                 //Se studente, passaggio a suo storico prenotazione
                 var intentLista = Intent(this,storicoStudActivity::class.java)
+
+                intentLista.putExtra("user",email)
+                intentLista.putExtra("pw",pw)
+
+                // Start dell'activity
                 startActivity(intentLista)
             }
 

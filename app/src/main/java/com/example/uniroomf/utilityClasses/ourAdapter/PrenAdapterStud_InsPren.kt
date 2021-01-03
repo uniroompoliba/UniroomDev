@@ -15,6 +15,7 @@ import com.example.uniroomf.recapActivity
 import com.example.uniroomf.utilityClasses.PrenInfo
 import org.json.JSONObject
 
+// Adapter per la riga dello studente nella nuova prenotazione
 class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInfo>, e : String, pw2 : String, r : String): BaseAdapter()
 {
     // Elementi dell'adapter
@@ -81,6 +82,7 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
             datiStud.put("datazione", prenotazione.getDataPren())
             datiStud.put("oraInizio", prenotazione.getOraInizio())
             datiStud.put("oraFine", prenotazione.getOraFine())
+            datiStud.put("tipologia", prenotazione.getTipo())
 
             // Non passo il ruolo perchè mi servirà solo lato client
 
@@ -101,6 +103,9 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
 
                         // Apro l'activity di recap
                         var apriRecapStud = Intent(context, recapActivity::class.java)
+
+                        // Aggiungo i dati al json object
+                        datiStud.put("posto",response.get("Posto"))
 
                         // Aggiungo i dati necessari
                         apriRecapStud.putExtra("datiPrenStringa", datiStud.toString())

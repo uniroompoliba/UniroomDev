@@ -8,8 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.example.uniroomf.R
 import com.example.uniroomf.utilityClasses.PrenInfo
+import org.w3c.dom.Text
 
-// Da fare adapter inserendo il row layout dello stud
+// Adapter per la riga dello storico studente
 class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>): BaseAdapter()
 {
     // Elementi dell'adapter
@@ -50,6 +51,16 @@ class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>): Bas
         var testoOraFine = p1!!.findViewById<TextView>(R.id.OraFinale)
         testoOraFine.setText(prenotazione.getOraFine())
 
+        // Settaggio dati docente e posto e tipologia
+
+        var testoDoc = p1!!.findViewById<TextView>(R.id.Docente)
+        testoDoc.setText(prenotazione.getDocente())
+
+        var testoPosto = p1!!.findViewById<TextView>(R.id.Posto)
+        testoPosto.setText(prenotazione.getPosto())
+
+        var testoTipo = p1!!.findViewById<TextView>(R.id.Tipologia)
+        testoTipo.setText(prenotazione.getTipo())
 
 
         // Effettuo il return della View

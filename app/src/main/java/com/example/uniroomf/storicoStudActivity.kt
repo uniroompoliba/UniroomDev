@@ -18,14 +18,16 @@ import org.json.JSONObject
 import kotlin.concurrent.thread
 
 class storicoStudActivity : AppCompatActivity () {
+
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_storico_stud)
+
     }
 
     override fun onResume() {
         super.onResume()
-        val setBtn = findViewById<Button>(R.id.settings)
+        setContentView(R.layout.activity_storico_stud)
+        var lista = findViewById<ListView>(R.id.listaStorStud2)
 
         val bundle2 = intent.extras
         var email = bundle2!!.get("user").toString()
@@ -73,6 +75,16 @@ class storicoStudActivity : AppCompatActivity () {
                             oggettoLista.setOraFine(temp.optString("oraFine"))
                             oggettoLista.setDataPren(temp.optString("datazione"))
 
+                            // Setto il nome del docente
+                            var nomeDoc = temp.optString("nomeDoc")
+                            var cognomeDoc = temp.optString("cognomeDoc")
+
+                            var datiDoc = nomeDoc + " " + cognomeDoc
+                            oggettoLista.setDoc(datiDoc)
+
+                            oggettoLista.setPosto(temp.opt("posto").toString())
+                            oggettoLista.setTipo(temp.optString("tipologia"))
+
                             listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
                         }
 
@@ -80,13 +92,13 @@ class storicoStudActivity : AppCompatActivity () {
                         var adapter = PrenAdapterStud(this, listaElementi)
 
                         // Creo la list view e gli attacco l'adapter
-                        var listView = findViewById<ListView>(R.id.listaStorStud)
-                        listView.adapter = adapter
+
+                        lista.adapter = adapter
 
                     },
                     Response.ErrorListener { error ->
                         // Errore
-                        println(error.toString())
+                        println("Errore storicoStudente: " + error.toString())
                     })
 
             // Aggiunta alla coda delle richieste
