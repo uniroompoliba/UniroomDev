@@ -2,6 +2,7 @@ package com.example.uniroomf
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.widget.*
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
@@ -96,6 +97,9 @@ class acivityImpostazioni : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Inserire nuova password")
             val input = EditText(this)
+
+            input.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD)
+
             val lp = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.MATCH_PARENT)

@@ -68,7 +68,7 @@ class logActivity : AppCompatActivity() {
                                     if(ruolo.equals("Docente"))
                                     {
                                         //Aprire menu Docente
-                                        Toast.makeText(this,  messaggio, Toast.LENGTH_LONG).show()
+                                        Toast.makeText(this,  messaggio, Toast.LENGTH_SHORT).show()
                                         var passaggio = Intent(this, menuPrincDoc::class.java)
 
                                         //Aggiungo username e password, mi servirà nello script PHP
@@ -84,7 +84,7 @@ class logActivity : AppCompatActivity() {
                                 else
                                     {
                                         // Aprire menu studente
-                                        Toast.makeText(this, messaggio, Toast.LENGTH_LONG).show()
+                                        Toast.makeText(this, messaggio, Toast.LENGTH_SHORT).show()
                                         var passaggio2 = Intent(this,menuPrincStud::class.java)
 
                                         //Aggiungo username e password, mi servirà nello script PHP

@@ -3,9 +3,7 @@ package com.example.uniroomf
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 
 class menuPrincStud : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +18,9 @@ class menuPrincStud : AppCompatActivity() {
         var email = bundle!!.get("user").toString()
         var pw = bundle!!.get("pw").toString()
         var ruolo = bundle!!.get("ruolo").toString()
+
+        var benvenuto = findViewById<TextView>(R.id.nomeUtente)
+        benvenuto.setText("Benvenuto " + email)
 
         var newPrenBtn = findViewById<Button>(R.id.newPrenStud)
         newPrenBtn.setOnClickListener {
@@ -54,7 +55,7 @@ class menuPrincStud : AppCompatActivity() {
 
             // Passo semplicemente alla schermata iniziale
             var tornaHome = Intent(this, MainActivity::class.java)
-            Toast.makeText(this, "Arrivederci.", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Arrivederci.", Toast.LENGTH_LONG).show()
             startActivity(tornaHome)
         }
     }
