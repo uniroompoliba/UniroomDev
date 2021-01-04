@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.Button
 import android.widget.ListView
 import android.widget.TextView
 import com.android.volley.Request
@@ -62,6 +63,7 @@ class storicoDocActivity : AppCompatActivity() {
                             oggettoLista.setOraInizio(temp.optString("oraInizio"))
                             oggettoLista.setOraFine(temp.optString("oraFine"))
                             oggettoLista.setDataPren(temp.optString("datazione"))
+                            oggettoLista.setTipo(temp.optString("tipologia"))
 
                             listaElementi.add(oggettoLista) // Aggiunta alla lista - l'aggiunta alla lista viene effettuata correttamente
                         }
@@ -85,13 +87,24 @@ class storicoDocActivity : AppCompatActivity() {
 
         }.start()
 
-    }
+        // Torna a home
+        var getHome = findViewById<Button>(R.id.home)
 
-    /*
-          Qui dobbiamo lavorare gli elementi per lo storico della prenotazione.
-          Implementare anche gli onClickListener per i due bottoni, che riguardano rispettivamente
-          la modifica e la cancellazione delle singole prenotazioni. Attendo commit grafica di Carnicio
-    */
+        // Aggiungo il listener
+        getHome.setOnClickListener{
+
+            // Creo intent per passaggio home
+            var passaHome = Intent(this, menuPrincDoc::class.java)
+
+            // Aggiungo gli elementi all'intent
+            passaHome.putExtra("user", email)
+            passaHome.putExtra("pw",pw)
+
+            // Passaggio effettivo all'activity
+            startActivity(passaHome)
+        }
+
+    }
 
 
 }

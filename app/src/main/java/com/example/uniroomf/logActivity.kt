@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.util.JsonReader
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
@@ -114,5 +116,49 @@ class logActivity : AppCompatActivity() {
 
             }.start()
         }
+
+    // Bottone per il recupero password
+    var recPw = findViewById<Button>(R.id.button)
+
+    recPw.setOnClickListener{
+
+        // Creo l'alert di inserimento
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Inserire Email per il recupero")
+        val input = EditText(this)
+
+        val lp = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT)
+        input.layoutParams = lp
+        builder.setView(input)
+
+        // Imposto il pulsante di inserimento
+        builder.setPositiveButton("Inserisci"){dialog, which : Int ->
+            var emailRif = input.text.toString()
+
+            var oggetto = JSONObject()
+            oggetto.put("email", emailRif)
+
+            // Parametri per la request
+            var myRQ = Volley.newRequestQueue(this)
+            var urlRecPw = "http://uniroompoliba.altervista.org/public/utilityScripts/recPass.php"
+
+            Thread{
+
+                var mandaPw = JsonObjectRequest(Request.Method.POST, urlRecPw, oggetto,
+                Response.Listener { response ->
+                      Toast.makeText(this,response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
+                },
+                Response.ErrorListener { error ->
+                    println("Errore ricevuto nel recupero password: " + error.toString())
+                })
+
+                myRQ.add(mandaPw)
+            }.start()
+        }
+
+        builder.show()
+    }
     }
 }

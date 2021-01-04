@@ -1,5 +1,6 @@
 package com.example.uniroomf
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -106,7 +107,23 @@ class storicoStudActivity : AppCompatActivity () {
 
         }.start()
 
+        // Listener per ritornare a home
+        // Torna a home
+        var getHome = findViewById<Button>(R.id.home)
 
+        // Aggiungo il listener
+        getHome.setOnClickListener{
+
+            // Creo intent per passaggio home
+            var passaHome = Intent(this, menuPrincDoc::class.java)
+
+            // Aggiungo gli elementi all'intent
+            passaHome.putExtra("user", email)
+            passaHome.putExtra("pw",pw)
+
+            // Passaggio effettivo all'activity
+            startActivity(passaHome)
+        }
 
         }
 

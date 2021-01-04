@@ -227,6 +227,8 @@ class prenotazDocActivity : AppCompatActivity() {
                                         intentDoc.putExtra("datiPrenStringa", datiPren.toString())
                                         intentDoc.putExtra("email", username)
                                         intentDoc.putExtra("pw", pw)
+                                        intentDoc.putExtra("ruolo", "N/A")
+
                                         startActivity(intentDoc)
                                     } else {
                                         // Prenotazione non andata a buon fine
@@ -263,6 +265,7 @@ class prenotazDocActivity : AppCompatActivity() {
                     datiPren.put("datazioneRicevuta", datazioneRicevuta)
                     datiPren.put("oraInizioRicevuta", oraInizioRicevuta)
                     datiPren.put("oraFineRicevuta", oraFineRicevuta)
+
 
                     // Request - parametri iniziali
                     var myRQ = Volley.newRequestQueue(this)
@@ -340,7 +343,8 @@ class prenotazDocActivity : AppCompatActivity() {
                         val inviaPrenDoc = JsonObjectRequest(Request.Method.POST, urlPrenDoc, datiPren,
                                 Response.Listener { response ->
                                     // In caso di risposta corretta apro il recap
-                                    if (response.get("tipoErr").toString().equals("Prenotazione correttamente effettuata.")) {
+                                    if (response.get("tipoErr").toString().equals("Prenotazione correttamente effettuata."))
+                                    {
                                         //Toast message
                                         Toast.makeText(this, "Prenotazione correttamente effettuata", Toast.LENGTH_LONG).show()
 
@@ -350,7 +354,14 @@ class prenotazDocActivity : AppCompatActivity() {
                                         intentDoc.putExtra("datiPrenStringa", datiPren.toString())
                                         intentDoc.putExtra("email", username)
                                         intentDoc.putExtra("pw", pw)
+                                        intentDoc.putExtra("ruolo", "N/A")
+
                                         startActivity(intentDoc)
+                                    }
+                                    else
+                                    {
+                                        // In caso di errore
+                                        Toast.makeText(this, response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
                                     }
 
                                 },

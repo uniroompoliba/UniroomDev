@@ -117,6 +117,10 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
                         // Apro l'activity
                         context!!.startActivity(apriRecapStud)
                     }
+                    else
+                    {
+                        Toast.makeText(context, response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
+                    }
 
                 },
                 Response.ErrorListener { error ->

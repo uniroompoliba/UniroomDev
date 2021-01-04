@@ -104,7 +104,7 @@ class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>, e : 
                                 // Comunicazione andata a buon fine
                                 Toast.makeText(context, "Prenotazione correttamente eliminata.", Toast.LENGTH_SHORT).show()
 
-                                // Passo di nuovo allo storico
+                                // Passo  allo storico
                                 var mioIntent = Intent(context, storicoStudActivity::class.java)
 
                                 mioIntent.putExtra("user", emailStud)
@@ -112,12 +112,6 @@ class PrenAdapterStud constructor(var t : Context, p : ArrayList<PrenInfo>, e : 
 
                                 context!!.startActivity(mioIntent)
 
-                            }
-                            else
-                            {
-                                // Già prenotato per questa lezione
-                                println("entro qui")
-                                Toast.makeText(context, response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
                             }
                         } ,
                         Response.ErrorListener { error ->
