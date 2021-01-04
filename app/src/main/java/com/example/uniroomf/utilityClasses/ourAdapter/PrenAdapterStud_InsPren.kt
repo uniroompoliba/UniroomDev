@@ -21,7 +21,7 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
     // Elementi dell'adapter
     private var pren : ArrayList<PrenInfo> = p
     private var context : Context? = t
-
+    //seso
     // Elementi studente
     private var emailStud = e
     private var passwordStud = pw2
