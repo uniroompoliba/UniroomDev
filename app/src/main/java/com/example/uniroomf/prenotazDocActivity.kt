@@ -223,11 +223,15 @@ class prenotazDocActivity : AppCompatActivity() {
 
                                         // Apertura activity
                                         var intentDoc = Intent(this, recapActivity::class.java)
-                                        intentDoc.putExtra("ruolo", "Docente") // Grazie a questo saprò se far apparire il posto nel recap
+                                        intentDoc.putExtra("ruolo", "Docente")
+                                        // Grazie a questo saprò se far apparire il posto nel recap
+
+                                        datiPren.put("posto", "N/A")
+
                                         intentDoc.putExtra("datiPrenStringa", datiPren.toString())
                                         intentDoc.putExtra("email", username)
                                         intentDoc.putExtra("pw", pw)
-                                        intentDoc.putExtra("ruolo", "N/A")
+                                        intentDoc.putExtra("posto", "N/A")
 
                                         startActivity(intentDoc)
                                     } else {
@@ -351,10 +355,13 @@ class prenotazDocActivity : AppCompatActivity() {
                                         // Apertura activity
                                         var intentDoc = Intent(this, recapActivity::class.java)
                                         intentDoc.putExtra("ruolo", "Docente") // Grazie a questo saprò se far apparire il posto nel recap
+
+                                        datiPren.put("posto","N/A")
+
                                         intentDoc.putExtra("datiPrenStringa", datiPren.toString())
                                         intentDoc.putExtra("email", username)
                                         intentDoc.putExtra("pw", pw)
-                                        intentDoc.putExtra("ruolo", "N/A")
+                                        intentDoc.putExtra("posto", "N/A")
 
                                         startActivity(intentDoc)
                                     }
