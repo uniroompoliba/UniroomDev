@@ -33,6 +33,8 @@ class recapActivity : AppCompatActivity() {
         var pw = bundlericevuto!!.get("pw").toString()
         var posto = bundlericevuto!!.get("posto").toString()
 
+        println("Ruolo ricevuto nel recap: " + ruoloRicevuto)
+
         //Creo il jsonObject dalla stringa ricevuta
         var datiPrenInjson = JSONObject(stringaPren)
 

@@ -95,7 +95,7 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
                 var inserisciStud = JsonObjectRequest(Request.Method.POST, urlInsPren, datiStud,
                 Response.Listener {response ->
 
-                    // Controllo se la comunicazione è andata a buon fine +
+                    // Controllo se la comunicazione è andata a buon fine
                     if(response.get("tipoErr") == 0)
                     {
                         // OK
@@ -115,6 +115,7 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
                         apriRecapStud.putExtra("posto", response.get("Posto").toString())
 
                         // Apro l'activity
+                        println("Ruolo passato: " + ruolo)
                         context!!.startActivity(apriRecapStud)
                     }
                     else

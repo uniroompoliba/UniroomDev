@@ -115,7 +115,7 @@ class storicoStudActivity : AppCompatActivity () {
         getHome.setOnClickListener{
 
             // Creo intent per passaggio home
-            var passaHome = Intent(this, menuPrincDoc::class.java)
+            var passaHome = Intent(this, menuPrincStud::class.java)
 
             // Aggiungo gli elementi all'intent
             passaHome.putExtra("user", email)
