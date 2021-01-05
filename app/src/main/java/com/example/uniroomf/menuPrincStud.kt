@@ -4,6 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class menuPrincStud : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +25,33 @@ class menuPrincStud : AppCompatActivity() {
         var ruolo = bundle!!.get("ruolo").toString()
 
         var benvenuto = findViewById<TextView>(R.id.nomeUtente)
-        benvenuto.setText("Benvenuto " + email)
+
+        // Estraggo il nome
+        Thread{
+            var myRQ = Volley.newRequestQueue(this)
+            var urlEstraz = "http://uniroompoliba.altervista.org/public/utilityScripts/estraiNome.php"
+
+            var oggettoDati = JSONObject()
+
+            oggettoDati.put("user",email)
+            oggettoDati.put("pw",pw)
+            oggettoDati.put("ruolo",ruolo)
+
+            var recNome = JsonObjectRequest(Request.Method.POST, urlEstraz, oggettoDati,
+            Response.Listener { response ->
+
+                benvenuto.setText("Benvenuto " + response.get("Nome").toString())
+
+                // Fine request
+            },
+            Response.ErrorListener { error ->
+                println("Errore ricevuto nell'inserire il nome: " +  error.toString())
+
+            })
+
+            myRQ.add(recNome)
+        }.start()
+
 
         var newPrenBtn = findViewById<Button>(R.id.newPrenStud)
         newPrenBtn.setOnClickListener {

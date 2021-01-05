@@ -3,10 +3,12 @@ package com.example.uniroomf
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONObject
 
 class menuPrincDoc : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +23,35 @@ class menuPrincDoc : AppCompatActivity() {
         val bundle : Bundle? = intent.extras
         var email = bundle!!.get("user").toString()
         var pw = bundle!!.get("pw").toString()
+        var ruolo = bundle!!.get("ruolo").toString()
 
         var testo = findViewById<TextView>(R.id.nomeUtente)
-        testo.setText("Benvenuto " + email)
+
+        // Estraggo il nome
+        Thread{
+            var myRQ = Volley.newRequestQueue(this)
+            var urlEstraz = "http://uniroompoliba.altervista.org/public/utilityScripts/estraiNome.php"
+
+            var oggettoDati = JSONObject()
+
+            oggettoDati.put("user",email)
+            oggettoDati.put("pw",pw)
+            oggettoDati.put("ruolo",ruolo)
+
+            var recNome = JsonObjectRequest(Request.Method.POST, urlEstraz, oggettoDati,
+                    Response.Listener { response ->
+
+                        testo.setText("Benvenuto prof." + response.get("Nome").toString())
+
+                        // Fine request
+                    },
+                    Response.ErrorListener { error ->
+                        println("Errore ricevuto nell'inserire il nome: " +  error.toString())
+
+                    })
+
+            myRQ.add(recNome)
+        }.start()
 
 
         //Aggiungo il listener al bottone della nuova prenotazione
@@ -63,6 +91,8 @@ class menuPrincDoc : AppCompatActivity() {
 
             // Passo semplicemente alla schermata iniziale
             var tornaHome = Intent(this, MainActivity::class.java)
+
+            Toast.makeText(this, "Arrivederci", Toast.LENGTH_LONG ).show()
             startActivity(tornaHome)
         }
 

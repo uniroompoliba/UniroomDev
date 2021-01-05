@@ -70,6 +70,7 @@ class recapActivity : AppCompatActivity() {
                 var intentMenuPrinc = Intent(this, menuPrincDoc::class.java)
                 intentMenuPrinc.putExtra("user",email)
                 intentMenuPrinc.putExtra("pw",pw)
+                intentMenuPrinc.putExtra("ruolo","Docente")
                 startActivity(intentMenuPrinc)
             }
             else
@@ -79,6 +80,7 @@ class recapActivity : AppCompatActivity() {
 
                 intentLista.putExtra("user",email)
                 intentLista.putExtra("pw",pw)
+                intentLista.putExtra("ruolo","Studente")
 
                 // Start dell'activity
                 startActivity(intentLista)

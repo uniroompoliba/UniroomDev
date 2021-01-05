@@ -99,6 +99,7 @@ class storicoDocActivity : AppCompatActivity() {
             // Aggiungo gli elementi all'intent
             passaHome.putExtra("user", email)
             passaHome.putExtra("pw",pw)
+            passaHome.putExtra("ruolo","Docente")
 
             // Passaggio effettivo all'activity
             startActivity(passaHome)
