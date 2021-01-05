@@ -125,7 +125,7 @@ class PrenAdapterStud_InsPren constructor(var t : Context, p : ArrayList<PrenInf
 
                 },
                 Response.ErrorListener { error ->
-                        println("Errore ricevuto: " + error.toString())
+                        println("Errore ricevuto nell'inserimento prenotazione studente: " + error.toString())
                 })
 
                 myRQ.add(inserisciStud)

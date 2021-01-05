@@ -60,9 +60,13 @@ class storicoStudActivity : AppCompatActivity () {
 
             var richiediPrenotazioni = JsonObjectRequest(Request.Method.POST, urlPrenStud, datiStud,
                     Response.Listener { response ->
+
+                        // entra correttamente
+
                         // dal JsonObject ricevuto estraggo i dati da aggiungere alla lista
                         // Devo estrarre i dati dal json
                         var dataArray = response.optJSONArray("data")
+                        println("Data array preso: " + dataArray)
 
                         // I dati vengono presi correttamente - estrazione
                         for(i in 0 until dataArray.length())
@@ -120,6 +124,7 @@ class storicoStudActivity : AppCompatActivity () {
             // Aggiungo gli elementi all'intent
             passaHome.putExtra("user", email)
             passaHome.putExtra("pw",pw)
+            passaHome.putExtra("ruolo", "Studente")
 
             // Passaggio effettivo all'activity
             startActivity(passaHome)
