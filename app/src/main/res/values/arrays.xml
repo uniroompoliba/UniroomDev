@@ -29,7 +29,7 @@
     <!-- Array degli orari di inizio e fine-->
     <!--INIZIO-->
     <string-array name="OrariInizio">
-        <item>8:30</item>
+        <item>08:30</item>
         <item>11:00</item>
         <item>14:00</item>
         <item>16:30</item>
@@ -112,7 +112,7 @@
 
     <!--ANNO-->
     <string-array name="Anno">
-        <item>2020</item>
         <item>2021</item>
+        <item>2022</item>
     </string-array>
 </resources>

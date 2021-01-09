@@ -125,12 +125,10 @@ class acivityImpostazioni : AppCompatActivity() {
                                 Response.Listener { response ->
                                     // Toast di avvenuto cambiamento
                                     Toast.makeText(this, response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
-                                    var passToMenu = Intent(this, menuPrincDoc::class.java)
-                                    passToMenu.putExtra("user", user)
-                                    passToMenu.putExtra("pw", pw)
 
-                                    // Avvio la nuova activity
-                                    startActivity(passToMenu)
+                                    // Ritorno al menu principale
+                                    var passaPrinc = Intent(this, MainActivity::class.java)
+                                    startActivity(passaPrinc)
                                 },
                                 Response.ErrorListener { error ->
                                     // Errore
