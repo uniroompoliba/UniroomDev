@@ -302,6 +302,10 @@ class prenotazDocActivity : AppCompatActivity() {
 
                                         startActivity(tornaAlloStorico)
                                     }
+                                    else
+                                    {
+                                        Toast.makeText(this,response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
+                                    }
                                 },
                                 Response.ErrorListener { error ->
                                     println("Errore rilevato: " + error.toString())
@@ -431,6 +435,10 @@ class prenotazDocActivity : AppCompatActivity() {
                                         tornaAlloStorico.putExtra("password", pw)
 
                                         startActivity(tornaAlloStorico)
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(this,response.get("tipoErr").toString(), Toast.LENGTH_LONG).show()
                                     }
                                 },
                                 Response.ErrorListener { error ->
